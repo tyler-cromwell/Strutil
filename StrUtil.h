@@ -1,0 +1,11 @@
+#ifndef STRUTIL_H_
+#define STRUTIL_H_
+
+#include <CVector.h>
+
+int indexOf(const char* string, const char character);
+int* indexesOf(char* string, char character, int* amount);
+CVector split(char* str, const char* delim);
+char* substr(char* str, int start, int end);
+
+#endif
