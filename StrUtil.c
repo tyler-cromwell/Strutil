@@ -37,8 +37,7 @@
  */
 int indexOf(const char* string, const char character) {
 	int i = 0;
-	while (string[i] != character)
-		i++;
+	while (string[i] != character) i++;
 	return i;
 }
 
@@ -58,7 +57,6 @@ int* indexesOf(char* string, char character, int* amount) {
 	*amount = 0;
 	for (int i = 0; i < strlen(string); i++) {
 		if (string[i] == character) {
-			printf("%c\n", string[i]);
 			buff[*amount] = i;
 			(*amount)++;
 		}
