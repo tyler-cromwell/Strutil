@@ -23,7 +23,7 @@
 
 #include <CVector.h>
 #include <StrUtil.h>
-    
+
 #define STRING_END '\0' // Null terminator, marks end of a string.
 
 /*
@@ -37,7 +37,8 @@
  */
 int indexOf(const char* string, const char character) {
 	int i = 0;
-	while (string[i] != character) i++;
+	while (string[i] != character)
+		i++;
 	return i;
 }
 
@@ -53,7 +54,6 @@ int indexOf(const char* string, const char character) {
  */
 int* indexesOf(char* string, char character, int* amount) {
 	int buff[strlen(string)];
-	*amount = 0;
 	for (int i = 0; i < strlen(string); i++) {
 		if (string[i] == character) {
 			buff[*amount] = i;
@@ -61,9 +61,28 @@ int* indexesOf(char* string, char character, int* amount) {
 		}
 	}
 	int* indexes = calloc(*amount, sizeof(int));
-	for (int i = 0; i < *amount; i++)
+	for (int i = 0; i < (*amount); i++)
 		indexes[i] = buff[i];
 	return indexes;
+}
+
+/*
+ * Replaces all the characters in a string that match the
+ * given, with the new given character.
+ * Argument(s):
+ *   char* string, the string to be modified.
+ *   char old, the character being replaced.
+ *   char new, the character doing the replacing.
+ * Memory Management:
+ *   Nothing to worry about here.
+ * Returns: void.
+ */
+void replaceAll(char* string, char old, char new) {
+	int amount = 0;
+	int* indexes = indexesOf(string, old, &amount);
+	for (int i = 0; i < amount; i++)
+		string[indexes[i]] = new;
+	free(indexes);
 }
 
 /*
