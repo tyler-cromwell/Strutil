@@ -52,7 +52,6 @@ int indexOf(const char* string, const char character) {
  * Returns: an array of all the indexes that 'character' is found at.
  */
 int* indexesOf(char* string, char character, int* amount) {
-	printf("%s\n", string);
 	int buff[strlen(string)];
 	*amount = 0;
 	for (int i = 0; i < strlen(string); i++) {
