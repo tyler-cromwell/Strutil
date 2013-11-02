@@ -54,14 +54,14 @@ int indexOf(const char* string, const char character) {
  */
 int* indexesOf(char* string, char character, int* amount) {
 	int buff[strlen(string)];
-	for (int i = 0; i < strlen(string); i++) {
+	for (size_t i = 0; i < strlen(string); i++) {
 		if (string[i] == character) {
 			buff[*amount] = i;
 			(*amount)++;
 		}
 	}
 	int* indexes = calloc(*amount, sizeof(int));
-	for (int i = 0; i < (*amount); i++)
+	for (size_t i = 0; i < (*amount); i++)
 		indexes[i] = buff[i];
 	return indexes;
 }
@@ -80,7 +80,7 @@ int* indexesOf(char* string, char character, int* amount) {
 void replaceAll(char* string, char old, char new) {
 	int amount = 0;
 	int* indexes = indexesOf(string, old, &amount);
-	for (int i = 0; i < amount; i++)
+	for (size_t i = 0; i < amount; i++)
 		string[indexes[i]] = new;
 	free(indexes);
 }
