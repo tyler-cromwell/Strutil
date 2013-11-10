@@ -25,6 +25,7 @@
 #include <StrUtil.h>
 
 #define STRING_END '\0' // Null terminator, marks end of a string.
+#define BLANK_SPACE 32  // The ASCII value for the Space character.
 
 /*
  * Gets the index of a character in a string.
@@ -98,11 +99,9 @@ CVector split(char* str, const char* token) {
 	CVector tokens = cv_init(0);
 	char* part;
 	part = strtok(str, token);
-	int i = 0;
-	while (part != NULL) {
+	for (int i = 0; part != NULL; i++) {
 		add(&tokens, i, (GenericType) part);
 		part = strtok(NULL, token);
-		i++;
 	}
 	return tokens;
 }
@@ -126,4 +125,25 @@ char* substr(char* original, int start, int end) {
 	}
 	substring[end-start] = STRING_END;
 	return substring;
+}
+
+/*
+ * Trims the leading and trailing whitespace from a string.
+ * Argument(s):
+ *   char* original, the string to be trimmed.
+ * Memory Management:
+ *   Free the returned pointer when done.
+ * Returns: the trimmed version of 'original'.
+ */
+char* trim(char* original) {
+	int i = 0;
+	for (i; original[i] == BLANK_SPACE; i++);
+	int start = i;
+	for (i = strlen(original)-1; original[i] == BLANK_SPACE; i--);
+	int end = i;
+	char* new = calloc(end-start+2, sizeof(char));
+	for (int j = 0; j < end-start+1; j++)
+		new[j] = original[j+start];
+	new[end-start+1] = '\0';
+	return new;
 }
