@@ -95,13 +95,35 @@ void replaceAll(char* string, char old, char new) {
  *   Free the array member from the returned pointer when done.
  * Returns: a resizeable array of tokens.
  */
-CVector split(char* str, const char* token) {
+CVector cvect_split(char* string, const char* token) {
 	CVector tokens = cv_init(0);
 	char* part;
-	part = strtok(str, token);
+	part = strtok(string, token);
 	for (int i = 0; part != NULL; i++) {
 		add(&tokens, i, (GenericType) part);
 		part = strtok(NULL, token);
+	}
+	return tokens;
+}
+
+/*
+ * Splits up a string at a given token.
+ * Argument(s):
+ *   char* str, the string to be split.
+ *   char* delimiter, the token used to split 'string' at.
+ *   int* tokenAmount, a pointer to the number of tokens produced.
+ * Memory Management:
+ *   Free the string array when done.
+ * Returns: an array of tokens.
+ */
+char** split_string(char* string, char* delimiter, int* tokenAmount) {
+	char** tokens = calloc((*tokenAmount)+1, sizeof(char));
+	char* tok = strtok(string, delimiter);
+	for (int i = 0; tok != NULL; i++) {
+		tokens[i] = tok;
+		(*tokenAmount)++;
+		tok = strtok(NULL, delimiter);
+		if (tok != NULL) tokens = realloc(tokens, ((*tokenAmount)+1) * sizeof(char*));
 	}
 	return tokens;
 }
@@ -116,7 +138,7 @@ CVector split(char* str, const char* token) {
  *   Free the returned pointer when done.
  * Returns: the substring.
  */
-char* substr(char* original, int start, int end) {
+char* substring(char* original, int start, int end) {
 	char* substring = calloc(end-start+1, sizeof(char));
 	int i = 0;
 	while (i < (end-start)) {
@@ -144,6 +166,6 @@ char* trim(char* original) {
 	char* new = calloc(end-start+2, sizeof(char));
 	for (int j = 0; j < end-start+1; j++)
 		new[j] = original[j+start];
-	new[end-start+1] = '\0';
+	new[end-start+1] = STRING_END;
 	return new;
 }
