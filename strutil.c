@@ -22,7 +22,7 @@
 #include <string.h>
 
 #include <CVector.h>
-#include <StrUtil.h>
+#include <strutil.h>
 
 #define STRING_END '\0' // Null terminator, marks end of a string.
 #define BLANK_SPACE 32  // The ASCII value for the Space character.
@@ -89,7 +89,7 @@ void replaceAll(char* string, char old, char new) {
 /*
  * Splits up a string at a given token.
  * Argument(s):
- *   char* str, the string to be split.
+ *   char* string, the string to be split.
  *   const char* token, the token used to split 'str' at.
  * Memory Management:
  *   Free the array member from the returned pointer when done.
@@ -109,7 +109,7 @@ CVector cvect_split(char* string, const char* token) {
 /*
  * Splits up a string at a given token.
  * Argument(s):
- *   char* str, the string to be split.
+ *   char* string, the string to be split.
  *   char* delimiter, the token used to split 'string' at.
  *   int* tokenAmount, a pointer to the number of tokens produced.
  * Memory Management:
