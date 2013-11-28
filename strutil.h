@@ -1,7 +1,7 @@
 #ifndef STRUTIL_H_
 #define STRUTIL_H_
 
-#include <data-structs/vector.h>
+#include "data-structs/vector.h"
 
 int indexOf(const char* string, const char character);
 int* indexesOf(char* string, char character, int* amount);
