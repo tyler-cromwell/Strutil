@@ -96,7 +96,7 @@ void replaceAll(char* string, char old, char new) {
  * Returns: a resizeable array of tokens.
  */
 Vector vect_split(char* string, const char* token) {
-	Vector tokens = cv_init(0);
+	Vector tokens = vect_init(0);
 	char* part;
 	part = strtok(string, token);
 	for (int i = 0; part != NULL; i++) {
@@ -159,7 +159,7 @@ char* substring(char* original, int start, int end) {
  */
 char* trim(char* original) {
 	int i = 0;
-	for (i; original[i] == BLANK_SPACE; i++);
+	for (; original[i] == BLANK_SPACE; i++);
 	int start = i;
 	for (i = strlen(original)-1; original[i] == BLANK_SPACE; i--);
 	int end = i;
