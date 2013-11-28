@@ -21,8 +21,8 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include <CVector.h>
-#include <strutil.h>
+#include "data-structs/vector.h"
+#include "strutil.h"
 
 #define STRING_END '\0' // Null terminator, marks end of a string.
 #define BLANK_SPACE 32  // The ASCII value for the Space character.
@@ -95,12 +95,12 @@ void replaceAll(char* string, char old, char new) {
  *   Free the array member from the returned pointer when done.
  * Returns: a resizeable array of tokens.
  */
-CVector cvect_split(char* string, const char* token) {
-	CVector tokens = cv_init(0);
+Vector vect_split(char* string, const char* token) {
+	Vector tokens = cv_init(0);
 	char* part;
 	part = strtok(string, token);
 	for (int i = 0; part != NULL; i++) {
-		add(&tokens, i, (GenericType) part);
+		add(&tokens, i, (GenType) part);
 		part = strtok(NULL, token);
 	}
 	return tokens;
