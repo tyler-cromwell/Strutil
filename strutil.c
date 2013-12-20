@@ -37,7 +37,7 @@
  * Returns: the index of 'character' in 'string'
  */
 int indexOf(const char* string, const char character) {
-	int i = 0;
+	unsigned int i = 0;
 	while (string[i] != character)
 		i++;
 	return i;
@@ -55,14 +55,14 @@ int indexOf(const char* string, const char character) {
  */
 int* indexesOf(char* string, char character, int* amount) {
 	int buff[strlen(string)];
-	for (int i = 0; i < strlen(string); i++) {
+	for (unsigned int i = 0; i < strlen(string); i++) {
 		if (string[i] == character) {
 			buff[*amount] = i;
 			(*amount)++;
 		}
 	}
 	int* indexes = calloc(*amount, sizeof(int));
-	for (int i = 0; i < (*amount); i++)
+	for (unsigned int i = 0; i < (*amount); i++)
 		indexes[i] = buff[i];
 	return indexes;
 }
@@ -81,7 +81,7 @@ int* indexesOf(char* string, char character, int* amount) {
 void replaceAll(char* string, char old, char new) {
 	int amount = 0;
 	int* indexes = indexesOf(string, old, &amount);
-	for (int i = 0; i < amount; i++)
+	for (unsigned int i = 0; i < amount; i++)
 		string[indexes[i]] = new;
 	free(indexes);
 }
@@ -99,7 +99,7 @@ Vector vect_split(char* string, const char* token) {
 	Vector tokens = vect_init(0);
 	char* part;
 	part = strtok(string, token);
-	for (int i = 0; part != NULL; i++) {
+	for (unsigned int i = 0; part != NULL; i++) {
 		add(&tokens, i, (GenType) part);
 		part = strtok(NULL, token);
 	}
@@ -119,7 +119,7 @@ Vector vect_split(char* string, const char* token) {
 char** split_string(char* string, char* delimiter, int* tokenAmount) {
 	char** tokens = calloc((*tokenAmount)+1, sizeof(char));
 	char* tok = strtok(string, delimiter);
-	for (int i = 0; tok != NULL; i++) {
+	for (unsigned int i = 0; tok != NULL; i++) {
 		tokens[i] = tok;
 		(*tokenAmount)++;
 		tok = strtok(NULL, delimiter);
@@ -140,11 +140,8 @@ char** split_string(char* string, char* delimiter, int* tokenAmount) {
  */
 char* substring(char* original, int start, int end) {
 	char* substring = calloc(end-start+1, sizeof(char));
-	int i = 0;
-	while (i < (end-start)) {
+	for (unsigned int i = 0; i < (end-start); i++)
 		substring[i] = original[start+i];
-		i++;
-	}
 	substring[end-start] = STRING_END;
 	return substring;
 }
