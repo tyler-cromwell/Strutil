@@ -7,4 +7,5 @@ OBJ=strutil.o
 
 all:
 	$(CC) $(CFLAGS) $(INCLUDE) $(SOURCE) $(OUT) $(OBJ)
+	cp ./strutil.h ../T-Shell/include/strutil.h
 	mv ./$(OBJ) ../T-Shell/lib/$(OBJ)
