@@ -3,12 +3,12 @@
 
 #include "data-structs/vector.h"
 
-int indexOf(const char* string, const char character);
-int* indexesOf(char* string, char character, int* amount);
-void replaceAll(char* string, char old, char new);
-Vector vect_split(char* string, const char* token);
-char** split_string(char* string, char* delimiter, int* tokenAmount);
-char* substring(char* str, int start, int end);
-char* trim(char* original);
+extern int indexOf(const char* string, const char character);
+extern int* indexesOf(char* string, char character, int* amount);
+extern void replaceAll(char* string, char old, char new);
+extern Vector vect_split(char* string, const char* token);
+extern char** split_string(char* string, char* delimiter, int* tokenAmount);
+extern char* substring(char* str, int start, int end);
+extern char* trim(char* original);
 
 #endif
