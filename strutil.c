@@ -21,8 +21,7 @@
  */
 int indexOf(const char* string, const char character) {
 	unsigned int i = 0;
-	while (string[i] != character)
-		i++;
+	while (string[i] != character) i++;
 	return i;
 }
 
@@ -78,12 +77,12 @@ void replaceAll(char* string, char old, char new) {
  *   Free the array member from the returned pointer when done.
  * Returns: a resizeable array of tokens.
  */
-Vector vect_split(char* string, const char* token) {
-	Vector tokens = vect_init(0);
+Vector vector_split(char* string, const char* token) {
+	Vector tokens = vector_init(0);
 	char* part;
 	part = strtok(string, token);
 	for (unsigned int i = 0; part != NULL; i++) {
-		add(&tokens, i, (GenType) part);
+		vector_add(&tokens, i, (GenType) part);
 		part = strtok(NULL, token);
 	}
 	return tokens;
