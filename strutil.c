@@ -8,7 +8,8 @@
 #include "strutil.h"
 
 #ifdef STRUTIL_DEBUG
-	#include "colors.h"
+	#define COLOR_YELLOW "\x1b[33m"
+	#define COLOR_RESET  "\x1b[0m"
 #endif
 
 #define BLANK_SPACE 32  // The ASCII value for the Space character.
