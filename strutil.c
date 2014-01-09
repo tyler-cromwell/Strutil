@@ -84,21 +84,12 @@ char* removeThese(char* string, char* chars) {
 			}
 		}
 	}
-	shortened[strlen(string) - strlen(chars)] = NUL;
+	shortened[index] = NUL;
 	#ifdef STRUTIL_DEBUG
 		printf(COLOR_YELLOW "STRUTIL: REMOVE_THESE: \"%s\" shortened to \"%s\"\n" COLOR_RESET, string, shortened);
 	#endif
 	return shortened;
 }
-
-/*
-char* removeThis(char* string, char* substring) {
-	#ifdef STRUTIL_DEBUG
-		printf(COLOR_YELLOW "STRUTIL: REMOVE_THIS: Attempting to remove \"%s\" from \'%s\'\n" COLOR_RESET, substring, string);
-	#endif
-	return NULL;
-}
-*/
 
 /*
  * Replaces all the characters in a string that match the
