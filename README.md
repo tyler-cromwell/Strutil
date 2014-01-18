@@ -6,5 +6,9 @@
   - contains
   - indexOf
   - indexesOf
-  - 
+  - removeThese
+  - replaceAll
+  - vector_split
+  - split_string
+  - substring
   - trim
