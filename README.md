@@ -1,6 +1,6 @@
 # What is StrUtil?
 
-  StrUtil is a simple string library that I've been using to supplement the string functions in the C Standard Library.
+  StrUtil is a simple string library that I've been using to supplement the string functions in the [C Standard Library][C Standard Library].
 
 # Functions
   - contains: Tests if a sequence is contained in a string.
@@ -12,3 +12,5 @@
   - split_string: Splits a string at each occurence of a token. Returns an array of Strings.
   - substring: Gets a substring within a given range.
   - trim: Trims the leading and trailing spaces in a string.
+
+[C Standard Library]: http://en.wikipedia.org/wiki/C_standard_library
