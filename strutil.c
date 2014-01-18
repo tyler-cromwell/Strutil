@@ -16,6 +16,31 @@
 #define NUL   0  // The ASCII value for the Null character.
 
 /*
+ * Checks if a string contains another string.
+ * Argument(s):
+ *   char* string: the string being searched.
+ *   char* sequence: the sequence to search for.
+ * Returns: an integer (1 for found, 0 for not).
+ */
+int contains(char* string, char* sequence) {
+	#ifdef STRUTIL_DEBUG
+		printf(COLOR_YELLOW "STRUTIL: CONTAINS: Searching \"%s\" for \"%s\"\n" COLOR_RESET, string, sequence);
+	#endif
+	unsigned int found = 0;
+	unsigned int length = strlen(string);
+	for (unsigned int i = 0; i < length; i++) {
+		#ifdef STRUTIL_DEBUG
+			printf(COLOR_YELLOW "STRUTIL: CONTAINS: \"%s\" \"%s\"\n" COLOR_RESET, string, sequence);
+		#endif
+		if (!strncmp(string, sequence, strlen(sequence))) {
+			found = 1;
+			break;
+		} else string++;
+	}
+	return found;
+}
+
+/*
  * Gets the first index of a character in a string.
  * Argument(s):
  *   const char* string: the string being examined.
@@ -76,9 +101,11 @@ char* removeThese(char* string, char* chars) {
 	char* shortened = calloc(strlen(string) - strlen(chars) + 1, sizeof(char));
 	unsigned int index = 0;
 	for (unsigned int i = 0; i < strlen(string); i++) {
-		if (i > index) break;
 		for (unsigned int j = 0; j < strlen(chars); j++) {
 			if (string[i] != chars[j]) {
+				#ifdef STRUTIL_DEBUG
+					printf(COLOR_YELLOW "STRUTIL: REMOVE_THESE: \'%c\'\n" COLOR_RESET, string[i]);
+				#endif
 				shortened[index] = string[i];
 				index++;
 			}
