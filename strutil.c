@@ -5,7 +5,7 @@
 #include <string.h>
 
 #include "data-structs/vector.h"
-#include "strutil.h"
+#include "strutil/strutil.h"
 
 #ifdef STRUTIL_DEBUG
 	#define COLOR_YELLOW "\x1b[33m" // ANSI Escape Code for turning on yellow terminal text
@@ -154,7 +154,7 @@ Vector vector_split(char* string, const char* token) {
 	char* part;
 	part = strtok(string, token);
 	for (unsigned int i = 0; part != NULL; i++) {
-		vector_add(&tokens, i, (GenType) part);
+		vector_add(&tokens, i, part);
 		part = strtok(NULL, token);
 	}
 	return tokens;
