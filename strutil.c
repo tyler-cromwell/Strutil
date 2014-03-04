@@ -4,16 +4,24 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "data-structs/vector.h"
-#include "strutil/strutil.h"
+#include "strutil.h"
 
 #ifdef STRUTIL_DEBUG
-	#define COLOR_YELLOW "\x1b[33m" // ANSI Escape Code for turning on yellow terminal text
-	#define COLOR_RESET  "\x1b[0m"  // ANSI Escape Code for turning off colored terminal text
+	#ifndef COLOR_YELLOW
+		#define COLOR_YELLOW "\x1b[33m" // ANSI Escape Code for turning on yellow terminal text
+	#endif
+	#ifndef COLOR_RESET
+		#define COLOR_RESET  "\x1b[0m"  // ANSI Escape Code for turning off colored terminal text
+	#endif
 #endif
 
-#define SPACE 32 // The ASCII value for the Space character.
-#define NUL   0  // The ASCII value for the Null character.
+#ifndef ASCII_SPACE
+	#define ASCII_SPACE	32 // The ASCII value for the Space character.
+#endif
+
+#ifndef ASCII_NULL
+	#define ASCII_NULL 0 // The ASCII value for the Null character.
+#endif
 
 /*
  * Checks if a string contains another string.
@@ -22,22 +30,19 @@
  *   char* sequence: the sequence to search for.
  * Returns: an integer (1 for found, 0 for not).
  */
-int contains(char* string, char* sequence) {
+int strutil_contains(char* string, char* sequence) {
 	#ifdef STRUTIL_DEBUG
 		printf(COLOR_YELLOW "STRUTIL: CONTAINS: Searching \"%s\" for \"%s\"\n" COLOR_RESET, string, sequence);
 	#endif
-	unsigned int found = 0;
-	unsigned int length = strlen(string);
-	for (unsigned int i = 0; i < length; i++) {
+	for (size_t i = 0; i < strlen(string); i++) {
 		#ifdef STRUTIL_DEBUG
 			printf(COLOR_YELLOW "STRUTIL: CONTAINS: \"%s\" \"%s\"\n" COLOR_RESET, string, sequence);
 		#endif
-		if (!strncmp(string, sequence, strlen(sequence))) {
-			found = 1;
-			break;
-		} else string++;
+		if (!strncmp(string, sequence, strlen(sequence)))
+			return 1;
+		else string++;
 	}
-	return found;
+	return 0;
 }
 
 /*
@@ -47,11 +52,11 @@ int contains(char* string, char* sequence) {
  *   const char character: the character whose position being searched for.
  * Returns: the index of 'character' in 'string'
  */
-int indexOf(const char* string, const char character) {
+int strutil_indexOf(const char* string, const char character) {
 	#ifdef STRUTIL_DEBUG
 		printf(COLOR_YELLOW "STRUTIL: INDEX_OF: Searching \"%s\" for first occurence of \'%c\'\n" COLOR_RESET, string, character);
 	#endif
-	unsigned int i = 0;
+	size_t i = 0;
 	while (string[i] != character) i++;
 	return i;
 }
@@ -66,19 +71,19 @@ int indexOf(const char* string, const char character) {
  *   Free the returned array when done.
  * Returns: an array of all the indexes that 'character' is found at.
  */
-int* indexesOf(char* string, char character, int* amount) {
+int* strutil_indexesOf(char* string, char character, int* amount) {
 	#ifdef STRUTIL_DEBUG
 		printf(COLOR_YELLOW "STRUTIL: INDEXES_OF: Searching \"%s\" for all occurences of \'%c\'\n" COLOR_RESET, string, character);
 	#endif
 	int buff[strlen(string)];
-	for (unsigned int i = 0; i < strlen(string); i++) {
+	for (size_t i = 0; i < strlen(string); i++) {
 		if (string[i] == character) {
 			buff[*amount] = i;
 			(*amount)++;
 		}
 	}
 	int* indexes = calloc(*amount, sizeof(int));
-	for (unsigned int i = 0; i < (*amount); i++)
+	for (size_t i = 0; i < (*amount); i++)
 		indexes[i] = buff[i];
 	return indexes;
 }
@@ -94,14 +99,14 @@ int* indexesOf(char* string, char character, int* amount) {
  *   Free the returned string when done.
  * Returns: the shortened string.
  */
-char* removeThese(char* string, char* chars) {
+char* strutil_removeThese(char* string, char* chars) {
 	#ifdef STRUTIL_DEBUG
 		printf(COLOR_YELLOW "STRUTIL: REMOVE_THESE: Attempting to remove characters \"%s\" from \"%s\"\n" COLOR_RESET, chars, string);
 	#endif
 	char* shortened = calloc(strlen(string) - strlen(chars) + 1, sizeof(char));
-	unsigned int index = 0;
-	for (unsigned int i = 0; i < strlen(string); i++) {
-		for (unsigned int j = 0; j < strlen(chars); j++) {
+	size_t index = 0;
+	for (size_t i = 0; i < strlen(string); i++) {
+		for (size_t j = 0; j < strlen(chars); j++) {
 			if (string[i] != chars[j]) {
 				#ifdef STRUTIL_DEBUG
 					printf(COLOR_YELLOW "STRUTIL: REMOVE_THESE: \'%c\'\n" COLOR_RESET, string[i]);
@@ -111,7 +116,7 @@ char* removeThese(char* string, char* chars) {
 			}
 		}
 	}
-	shortened[index] = NUL;
+	shortened[index] = ASCII_NULL;
 	#ifdef STRUTIL_DEBUG
 		printf(COLOR_YELLOW "STRUTIL: REMOVE_THESE: \"%s\" shortened to \"%s\"\n" COLOR_RESET, string, shortened);
 	#endif
@@ -126,38 +131,15 @@ char* removeThese(char* string, char* chars) {
  *   char old: the character being replaced.
  *   char new: the character doing the replacing.
  */
-void replaceAll(char* string, char old, char new) {
+void strutil_replaceAll(char* string, char old, char new) {
 	#ifdef STRUTIL_DEBUG
 		printf(COLOR_YELLOW "STRUTIL: REPLACE_ALL: Replacing all occurences of \'%c\' with \'%c\' in \"%s\"\n" COLOR_RESET, old, new, string);
 	#endif
 	int amount = 0;
-	int* indexes = indexesOf(string, old, &amount);
-	for (unsigned int i = 0; i < amount; i++)
+	int* indexes = strutil_indexesOf(string, old, &amount);
+	for (size_t i = 0; i < amount; i++)
 		string[indexes[i]] = new;
 	free(indexes);
-}
-
-/*
- * Splits up a string at a given token.
- * Argument(s):
- *   char* string: the string to be split.
- *   const char* token: the token used to split 'string' at.
- * Memory Management:
- *   Free the array member from the returned pointer when done.
- * Returns: a resizeable array of tokens.
- */
-Vector vector_split(char* string, const char* token) {
-	#ifdef STRUTIL_DEBUG
-		printf(COLOR_YELLOW "STRUTIL: VECTOR_SPLIT: Spliting \"%s\" at every occurence of \"%s\"\n" COLOR_RESET, string, token);
-	#endif
-	Vector tokens = vector_init(0);
-	char* part;
-	part = strtok(string, token);
-	for (unsigned int i = 0; part != NULL; i++) {
-		vector_add(&tokens, i, part);
-		part = strtok(NULL, token);
-	}
-	return tokens;
 }
 
 /*
@@ -170,13 +152,13 @@ Vector vector_split(char* string, const char* token) {
  *   Free the string array when done.
  * Returns: an array of tokens.
  */
-char** split_string(char* string, const char* delimiter, int* tokenAmount) {
+char** strutil_split(char* string, const char* delimiter, int* tokenAmount) {
 	#ifdef STRUTIL_DEBUG
 		printf(COLOR_YELLOW "STRUTIL: SPLIT_STRING: Spliting \"%s\" at every occurence of \"%s\"\n" COLOR_RESET, string, delimiter);
 	#endif
 	char** tokens = calloc(1, sizeof(char*));
 	char* tok = strtok(string, delimiter);
-	for (unsigned int i = 0; tok != NULL; i++) {
+	for (size_t i = 0; tok != NULL; i++) {
 		tokens[i] = tok;
 		(*tokenAmount)++;
 		tok = strtok(NULL, delimiter);
@@ -195,14 +177,12 @@ char** split_string(char* string, const char* delimiter, int* tokenAmount) {
  *   Free the returned pointer when done.
  * Returns: the substring.
  */
-char* substring(char* original, int start, int end) {
+char* strutil_substring(char* original, int start, int end) {
 	#ifdef STRUTIL_DEBUG
 		printf(COLOR_YELLOW "STRUTIL: SUBSTRING: Retrieving substring of \"%s\" from %d to %d\n" COLOR_RESET, original, start, end);
 	#endif
 	char* substring = calloc((end-start)+1, sizeof(char));
-	for (unsigned int i = 0; i < (end-start); i++)
-		substring[i] = original[start+i];
-	substring[end-start] = NUL;
+	strncpy(substring, original+start, end-start);
 	#ifdef STRUTIL_DEBUG
 		printf(COLOR_YELLOW "STRUTIL: SUBSTRING: Substring of \"%s\" from %d to %d is \"%s\"\n" COLOR_RESET, original, start, end, substring);
 	#endif
@@ -217,18 +197,16 @@ char* substring(char* original, int start, int end) {
  *   Free the returned pointer when done.
  * Returns: the trimmed version of 'original'.
  */
-char* trim(char* original) {
+char* strutil_trim(char* original) {
 	#ifdef STRUTIL_DEBUG
 		printf(COLOR_YELLOW "STRUTIL: TRIM: Trimming \"%s\"\n" COLOR_RESET, original);
 	#endif
 	int i = 0;
-	for (; original[i] == SPACE; i++);
+	while (original[i] == ASCII_SPACE) i++;
 	int start = i;
-	for (i = strlen(original)-1; original[i] == SPACE; i--);
+	for (i = strlen(original)-1; original[i] == ASCII_SPACE; i--);
 	int end = i;
 	char* new = calloc(end-start+2, sizeof(char));
-	for (int j = 0; j < end-start+1; j++)
-		new[j] = original[j+start];
-	new[end-start+1] = NUL;
+	strncpy(new, original+start, end-start+1);
 	return new;
 }
