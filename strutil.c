@@ -46,13 +46,48 @@ int strutil_contains(char* string, char* sequence) {
 }
 
 /*
+ * Compares the last n bytes of string to endtok to
+ * see if string ends with endtok.
+ * Argument(s):
+ *   char* string: The string being searched.
+ *   char* endtok: The token being searched for.
+ * Returns: an integer (1 for yes, 0 for no).
+ */
+int strutil_endsWith(char* string, char* endtok) {
+	#ifdef STRUTIL_DEBUG
+		printf(COLOR_YELLOW "STRUTIL: ENDS_WITH: Comparing the last \'%d\' bytes of \"%s\" to \"%s\"\n" COLOR_RESET, strlen(endtok), string, endtok);
+	#endif
+	char* substr = strutil_substring(string, strlen(string)-strlen(endtok), strlen(string));
+	int bit = 0;
+	if (!strncmp(substr, endtok, strlen(endtok)))
+		bit = 1;
+	free(substr);
+	return bit;
+}
+
+/*
+ * Compares the first n bytes of string to starttok to
+ * see if string starts with starttok.
+ * Argument(s):
+ *   char* string: The string being searched.
+ *   char* starttok: The token being searched for.
+ * Returns: an integer (1 for yes, 0 for no).
+ */
+inline int strutil_startsWith(char* string, char* starttok) {
+	#ifdef STRUTIL_DEBUG
+		printf(COLOR_YELLOW "STRUTIL: STARTS_WITH: Comparing the first \'%d\' bytes of \"%s\" to \"%s\"\n" COLOR_RESET, strlen(starttok), string, starttok);
+	#endif
+	return !strncmp(string, starttok, strlen(starttok));
+}
+
+/*
  * Gets the first index of a character in a string.
  * Argument(s):
  *   const char* string: the string being examined.
  *   const char character: the character whose position being searched for.
  * Returns: the index of 'character' in 'string'
  */
-int strutil_indexOf(const char* string, const char character) {
+inline int strutil_indexOf(const char* string, const char character) {
 	#ifdef STRUTIL_DEBUG
 		printf(COLOR_YELLOW "STRUTIL: INDEX_OF: Searching \"%s\" for first occurence of \'%c\'\n" COLOR_RESET, string, character);
 	#endif
