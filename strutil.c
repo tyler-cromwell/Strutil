@@ -106,7 +106,7 @@ inline int strutil_indexOf(const char* string, const char character) {
  *   Free the returned array when done.
  * Returns: an array of all the indexes that 'character' is found at.
  */
-int* strutil_indexesOf(char* string, char character, int* amount) {
+int* strutil_indexesOf(char* string, char character, unsigned int* amount) {
 	#ifdef STRUTIL_DEBUG
 		printf(COLOR_YELLOW "STRUTIL: INDEXES_OF: Searching \"%s\" for all occurences of \'%c\'\n" COLOR_RESET, string, character);
 	#endif
@@ -170,7 +170,7 @@ void strutil_replaceAll(char* string, char old, char new) {
 	#ifdef STRUTIL_DEBUG
 		printf(COLOR_YELLOW "STRUTIL: REPLACE_ALL: Replacing all occurences of \'%c\' with \'%c\' in \"%s\"\n" COLOR_RESET, old, new, string);
 	#endif
-	int amount = 0;
+	unsigned int amount = 0;
 	int* indexes = strutil_indexesOf(string, old, &amount);
 	for (size_t i = 0; i < amount; i++)
 		string[indexes[i]] = new;
@@ -187,7 +187,7 @@ void strutil_replaceAll(char* string, char old, char new) {
  *   Free the string array when done.
  * Returns: an array of tokens.
  */
-char** strutil_split(char* string, const char* delimiter, int* tokenAmount) {
+char** strutil_split(char* string, const char* delimiter, unsigned int* tokenAmount) {
 	#ifdef STRUTIL_DEBUG
 		printf(COLOR_YELLOW "STRUTIL: SPLIT_STRING: Spliting \"%s\" at every occurence of \"%s\"\n" COLOR_RESET, string, delimiter);
 	#endif
