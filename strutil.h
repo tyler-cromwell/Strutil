@@ -1,5 +1,5 @@
-#ifndef STRUTIL_H_
-#define STRUTIL_H_
+#ifndef STRUTIL_H
+#define STRUTIL_H
 
 #ifdef STRUTIL_DEBUG
 	#ifndef COLOR_YELLOW
