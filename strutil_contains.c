@@ -14,16 +14,23 @@
  * Returns: an integer (1 for found, 0 for not).
  */
 int strutil_contains(char* string, char* sequence) {
+	char* s = string;
 	#ifdef STRUTIL_DEBUG
-		printf(COLOR_YELLOW "STRUTIL: CONTAINS: Searching \"%s\" for \"%s\"\n" COLOR_RESET, string, sequence);
+		printf(COLOR_YELLOW "STRUTIL: CONTAINS: Searching through \"%s\" for \"%s\".\n" COLOR_RESET, string, sequence);
 	#endif
 	for (size_t i = 0; i < strlen(string); i++) {
 		#ifdef STRUTIL_DEBUG
-			printf(COLOR_YELLOW "STRUTIL: CONTAINS: \"%s\" \"%s\"\n" COLOR_RESET, string, sequence);
+			printf(COLOR_YELLOW "STRUTIL: CONTAINS: \"%s\" \"%s\"\n" COLOR_RESET, s, sequence);
 		#endif
-		if (!strncmp(string, sequence, strlen(sequence)))
+		if (!strncmp(s, sequence, strlen(sequence))) {
+			#ifdef STRUTIL_DEBUG
+				printf(COLOR_YELLOW "STRUTIL: CONTAINS: Found \"%s\" in \"%s\".\n" COLOR_RESET, sequence, string);
+			#endif
 			return 1;
-		else string++;
+		} else s++;
 	}
+	#ifdef STRUTIL_DEBUG
+		printf(COLOR_YELLOW "STRUTIL: CONTAINS: Sequence \"%s\" was not found in \"%s\".\n" COLOR_RESET, sequence, string);
+	#endif
 	return 0;
 }
