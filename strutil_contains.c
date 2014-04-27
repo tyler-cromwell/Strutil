@@ -18,6 +18,12 @@ int strutil_contains(char* string, char* sequence) {
 	#ifdef STRUTIL_DEBUG
 		printf(COLOR_YELLOW "STRUTIL: CONTAINS: Searching through \"%s\" for \"%s\".\n" COLOR_RESET, string, sequence);
 	#endif
+	if (strlen(sequence) > strlen(string)) {
+		#ifdef STRUTIL_DEBUG
+			printf(COLOR_YELLOW "STRUTIL: CONTAINS: Sequence \"%s\" is longer than \"%s\".\n" COLOR_RESET, sequence, string);
+		#endif
+		return 0;
+	}
 	for (size_t i = 0; i < strlen(string); i++) {
 		#ifdef STRUTIL_DEBUG
 			printf(COLOR_YELLOW "STRUTIL: CONTAINS: \"%s\" \"%s\"\n" COLOR_RESET, s, sequence);
