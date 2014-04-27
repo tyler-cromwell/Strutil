@@ -15,6 +15,12 @@
  * Returns: an integer (1 for yes, 0 for no).
  */
 int strutil_endsWith(char* string, char* endtok) {
+	if (strlen(endtok) > strlen(string)) {
+		#ifdef STRUTIL_DEBUG
+			printf(COLOR_YELLOW "STRUTIL: ENDS_WITH: Token \"%s\" is longer than \"%s\".\n" COLOR_RESET, endtok, string);
+		#endif
+		return 0;
+	}
 	#ifdef STRUTIL_DEBUG
 		printf(COLOR_YELLOW "STRUTIL: ENDS_WITH: Comparing the last \'%d\' byte(s) of \"%s\" to \"%s\"\n" COLOR_RESET, strlen(endtok), string, endtok);
 	#endif
