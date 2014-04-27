@@ -16,12 +16,20 @@
  */
 int strutil_endsWith(char* string, char* endtok) {
 	#ifdef STRUTIL_DEBUG
-		printf(COLOR_YELLOW "STRUTIL: ENDS_WITH: Comparing the last \'%d\' bytes of \"%s\" to \"%s\"\n" COLOR_RESET, strlen(endtok), string, endtok);
+		printf(COLOR_YELLOW "STRUTIL: ENDS_WITH: Comparing the last \'%d\' byte(s) of \"%s\" to \"%s\"\n" COLOR_RESET, strlen(endtok), string, endtok);
 	#endif
 	char* substr = strutil_substring(string, strlen(string)-strlen(endtok), strlen(string));
-	int bit = 0;
-	if (!strncmp(substr, endtok, strlen(endtok)))
-		bit = 1;
-	free(substr);
-	return bit;
+	if (!strncmp(substr, endtok, strlen(endtok))) {
+		#ifdef STRUTIL_DEBUG
+			printf(COLOR_YELLOW "STRUTIL: ENDS_WIDTH: \"%s\" ends with \"%s\".\n" COLOR_RESET, string, endtok);
+		#endif
+		free(substr);
+		return 1;
+	} else {
+		#ifdef STRUTIL_DEBUG
+			printf(COLOR_YELLOW "STRUTIL: ENDS_WIDTH: \"%s\" does not end with \"%s\".\n" COLOR_RESET, string, endtok);
+		#endif
+		free(substr);
+		return 0;
+	}
 }
