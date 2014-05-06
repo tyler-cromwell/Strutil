@@ -18,12 +18,12 @@
  */
 char* strutil_substring(char* original, int start, int end) {
 	#ifdef STRUTIL_DEBUG
-		printf(COLOR_YELLOW "STRUTIL: SUBSTRING: Retrieving substring of \"%s\" from %d to %d\n" COLOR_RESET, original, start, end);
+		printf(COLOR_YELLOW "STRUTIL: SUBSTRING: Retrieving substring of \"%s\" from %zd to %zd\n" COLOR_RESET, original, start, end);
 	#endif
 	char* substring = calloc((end-start)+1, sizeof(char));
 	strncpy(substring, original+start, end-start);
 	#ifdef STRUTIL_DEBUG
-		printf(COLOR_YELLOW "STRUTIL: SUBSTRING: Substring of \"%s\" from %d to %d is \"%s\"\n" COLOR_RESET, original, start, end, substring);
+		printf(COLOR_YELLOW "STRUTIL: SUBSTRING: Substring of \"%s\" from %zd to %zd is \"%s\"\n" COLOR_RESET, original, start, end, substring);
 	#endif
 	return substring;
 }

@@ -22,7 +22,7 @@ int strutil_endsWith(char* string, char* endtok) {
 		return 0;
 	}
 	#ifdef STRUTIL_DEBUG
-		printf(COLOR_YELLOW "STRUTIL: ENDS_WITH: Comparing the last \'%d\' byte(s) of \"%s\" to \"%s\"\n" COLOR_RESET, strlen(endtok), string, endtok);
+		printf(COLOR_YELLOW "STRUTIL: ENDS_WITH: Comparing the last \'%zd\' byte(s) of \"%s\" to \"%s\"\n" COLOR_RESET, strlen(endtok), string, endtok);
 	#endif
 	char* substr = strutil_substring(string, strlen(string)-strlen(endtok), strlen(string));
 	if (!strncmp(substr, endtok, strlen(endtok))) {

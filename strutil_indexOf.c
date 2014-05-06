@@ -20,7 +20,7 @@ inline int strutil_indexOf(const char* string, const char character) {
 	size_t i = 0;
 	while (string[i] != character) i++;
 	#ifdef STRUTIL_DEBUG
-		printf(COLOR_YELLOW "STRUTIL: INDEX_OF: \'%c\' found at \'%d\'\n" COLOR_RESET, character, i);	
+		printf(COLOR_YELLOW "STRUTIL: INDEX_OF: \'%c\' found at \'%zd\'\n" COLOR_RESET, character, i);	
 	#endif
 	return i;
 }

@@ -24,7 +24,7 @@ int* strutil_indexesOf(char* string, char character, unsigned int* amount) {
 	for (size_t i = 0; i < strlen(string); i++) {
 		if (string[i] == character) {
 			#ifdef STRUTIL_DEBUG
-				printf(COLOR_YELLOW "STRUTIL: INDEXES_OF: '%c' found at '%d'.\n" COLOR_RESET, character, i);
+				printf(COLOR_YELLOW "STRUTIL: INDEXES_OF: '%c' found at '%zd'.\n" COLOR_RESET, character, i);
 			#endif
 			buff[*amount] = i;
 			(*amount)++;
