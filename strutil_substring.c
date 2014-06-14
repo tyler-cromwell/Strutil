@@ -7,7 +7,8 @@
 #include "strutil.h"
 
 /*
- * Derives a substring from a given string. (start <= N < end)
+ * Derives a substring from a given string. (start <= i < end)
+ * Substring WILL BE null-terminated.
  * Argument(s):
  *   char* original: the string to derive the substring from.
  *   int start: the starting index.

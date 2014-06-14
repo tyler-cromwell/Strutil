@@ -7,7 +7,8 @@
 #include "strutil.h"
 
 /*
- * Splits up a string at a given token. Each element IS null-terminated.
+ * Splits up a string at a given token.
+ * Each element WILL BE null-terminated.
  * Argument(s):
  *   char* string: the string to be split.
  *   char* delimiter: the token used to split 'string' at.
