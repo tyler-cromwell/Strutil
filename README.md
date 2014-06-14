@@ -1,6 +1,6 @@
-# What is StrUtil?
+# What is libStrutil?
 
-  StrUtil is a simple string library that I've been using to supplement the string functions in the [C Standard Library][C Standard Library].
+  libStrutil is a simple string library that I've been using to supplement the string functions in the [C Standard Library][C Standard Library].
 
 # Functions
   - `contains`: Tests if a sequence is contained in a string.
