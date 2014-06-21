@@ -16,7 +16,7 @@
  */
 void strutil_replaceAll(char* string, char old, char new) {
 	#ifdef STRUTIL_DEBUG
-		char originalp[strlen(string)+1];
+		char original[strlen(string)+1];
 		strncpy(original, string, strlen(string)+1);
 		printf(COLOR_YELLOW "STRUTIL: REPLACE_ALL: Replacing all occurences of \'%c\' with \'%c\' in \"%s\"\n" COLOR_RESET, old, new, string);
 	#endif
@@ -26,6 +26,6 @@ void strutil_replaceAll(char* string, char old, char new) {
 		string[indexes[i]] = new;
 	free(indexes);
 	#ifdef STRUTIL_DEBUG
-		printf(COLOR_YELLOW "STRUTIL: REPLACE_ALL: \"%s\" is now \"%s\"\n" COLOR_RESET, originial, string);
+		printf(COLOR_YELLOW "STRUTIL: REPLACE_ALL: \"%s\" is now \"%s\"\n" COLOR_RESET, original, string);
 	#endif
 }
