@@ -18,19 +18,30 @@
  * Returns: an array of tokens.
  */
 char** strutil_split(char* string, const char* delimiter, unsigned int* tokenAmount) {
+	char* local = calloc(strlen(string)+1, sizeof(char));
+	strncpy(local, string, strlen(string)+1);
+
 	#ifdef STRUTIL_DEBUG
 		char original[strlen(string)+1];
 		strncpy(original, string, strlen(string)+1);
 		printf(COLOR_YELLOW "STRUTIL: SPLIT_STRING: Spliting \"%s\" at every occurence of \"%s\"\n" COLOR_RESET, string, delimiter);
 	#endif
+
 	char** tokens = calloc(1, sizeof(char*));
-	char* tok = strtok(string, delimiter);
+	char* tok = strtok(local, delimiter);
+
 	for (size_t i = 0; tok != NULL; i++) {
-		tokens[i] = tok;
+		size_t length = strlen(tok)+1;
+		char* token = calloc(length, sizeof(char));
+		strncpy(token, tok, length);
+
+		tokens[i] = token;
 		(*tokenAmount)++;
 		tok = strtok(NULL, delimiter);
-		if (tok != NULL) tokens = realloc(tokens, ((*tokenAmount)+1) * sizeof(char*));
+		if (tok != NULL)
+			tokens = realloc(tokens, ((*tokenAmount)+1) * sizeof(char*));
 	}
+
 	#ifdef STRUTIL_DEBUG
 		printf(COLOR_YELLOW "STRUTIL: SPLIT_STRING: \"%s\" after split: [", original);
 		for (size_t i = 0; i < *tokenAmount; i++) {
@@ -41,5 +52,8 @@ char** strutil_split(char* string, const char* delimiter, unsigned int* tokenAmo
 		}
 		printf("]\n" COLOR_RESET);
 	#endif
+
+	free(local);
 	return tokens;
 }
+
