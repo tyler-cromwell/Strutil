@@ -1,4 +1,4 @@
-#a What is Strutil?
+# What is Strutil?
 
   Strutil is a simple string library that I've been using to supplement the string functions in the [C Standard Library][C Standard Library].
 
