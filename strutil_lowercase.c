@@ -7,6 +7,14 @@
 	#include <stdio.h>
 #endif
 
+/**
+ * Sets alphabetic characters to lowercase.
+ * Argument(s):
+ *   char* string: the original string.
+ * Memory Management:
+ *   Free the returned pointer when done.
+ * Returns: A new string with lowercase letters.
+ */
 char* strutil_lowercase(char* string) {
 	#ifdef STRUTIL_DEBUG
 		printf(COLOR_YELLOW "STRUTIL: LOWERCASE: Setting all alphabetic characters in \"%s\" to lowercase.\n" COLOR_RESET, string);
