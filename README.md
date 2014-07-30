@@ -5,12 +5,13 @@
 # Functions
   - `contains`: Tests if a sequence is contained in a string.
   - `endsWith`: Tests if a string ends with a given token.
-  - `startsWith`: Tests if a string starts with a given token.
   - `indexOf`: Gets the FIRST index of a character within a string.
   - `indexesOf`: Gets ALL indexes of a character withing a string
+  - `lowercase`: Sets all letters to lowercase.
   - `removeThese`: Removes all given characters from a string.
   - `replaceAll`: Replaces each occurence of a character with a new character in a string.
   - `split`: Splits a string at each occurence of a token. Returns an array of Strings.
+  - `startsWith`: Tests if a string starts with a given token.
   - `substring`: Gets a substring within a given range.
   - `trim`: Trims the leading and trailing spaces in a string.
 
