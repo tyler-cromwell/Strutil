@@ -1,10 +1,11 @@
-/* Standard: gnu99 */
-
-#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
 #include "strutil.h"
+
+#ifdef STRUTIL_DEBUG
+	#include <stdio.h>
+#endif
 
 /*
  * Splits up a string at a given token.
@@ -12,7 +13,7 @@
  * Argument(s):
  *   char* string: the string to be split.
  *   char* delimiter: the token used to split 'string' at.
- *   int* tokenAmount: a pointer to the number of tokens produced.
+ *   size_t* tokenAmount: a pointer to the number of tokens produced.
  * Memory Management:
  *   Free the string array when done.
  * Returns: an array of tokens.
