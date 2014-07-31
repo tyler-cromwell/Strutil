@@ -16,7 +16,7 @@
  *   Free the returned array when done.
  * Returns: an array of all the indexes that 'character' is found at.
  */
-int* strutil_indexesOf(char* string, char character, unsigned int* amount) {
+int* strutil_indexesOf(char* string, char character, size_t* amount) {
 	#ifdef STRUTIL_DEBUG
 		printf(COLOR_YELLOW "STRUTIL: INDEXES_OF: Searching \"%s\" for all occurences of \'%c\'\n" COLOR_RESET, string, character);
 	#endif
