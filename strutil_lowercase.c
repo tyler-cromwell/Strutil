@@ -9,16 +9,13 @@
 
 /**
  * Sets alphabetic characters to lowercase.
- * The number of characters altered is the number given
- * if less than the length of the string.
  * Argument(s):
  *   char* string: The original string.
- *   size_t amount: The number of characters to alter.
  * Memory Management:
  *   Free the returned pointer when done.
  * Returns: A new string with lowercase letters.
  */
-char* strutil_lowercase(char* string, size_t amount) {
+char* strutil_lowercase(char* string) {
 	#ifdef STRUTIL_DEBUG
 		printf(COLOR_YELLOW "STRUTIL: LOWERCASE: Setting all alphabetic characters in \"%s\" to lowercase.\n" COLOR_RESET, string);
 	#endif
@@ -28,7 +25,7 @@ char* strutil_lowercase(char* string, size_t amount) {
 
 	strncpy(lower, string, length);
 
-	for (size_t i = 0; i < length && i < amount; i++) {
+	for (size_t i = 0; i < length; i++) {
 		if (65 <= lower[i] && lower[i] <= 90)
 			lower[i] = (char) (string[i] + 32);
 	}
