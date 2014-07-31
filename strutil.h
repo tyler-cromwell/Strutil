@@ -29,5 +29,6 @@ extern void strutil_replaceAll(char* string, char old, char new);
 extern char** strutil_split(char* string, const char* delimiter, size_t* tokenAmount);
 extern char* strutil_substring(char* str, int start, int end);
 extern char* strutil_trim(char* original);
+extern char* strutil_uppercase(char* string);
 
 #endif
