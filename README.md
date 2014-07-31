@@ -14,5 +14,6 @@
   - `startsWith`: Tests if a string starts with a given token.
   - `substring`: Gets a substring within a given range.
   - `trim`: Trims the leading and trailing spaces in a string.
+  - `uppercase`: Sets all letters to uppercase.
 
 [C Standard Library]: http://en.wikipedia.org/wiki/C_standard_library
