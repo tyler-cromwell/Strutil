@@ -23,7 +23,7 @@ extern int strutil_endsWith(char* string, char* endtok);
 extern int strutil_startsWith(char* string, char* starttok);
 extern int strutil_indexOf(const char* string, const char character);
 extern int* strutil_indexesOf(char* string, char character, unsigned int* amount);
-extern char* strutil_lowercase(char* string);
+extern char* strutil_lowercase(char* string, size_t amount);
 extern char* strutil_removeThese(char* string, char* chars);
 extern void strutil_replaceAll(char* string, char old, char new);
 extern char** strutil_split(char* string, const char* delimiter, unsigned int* tokenAmount);
