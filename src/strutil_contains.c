@@ -1,10 +1,8 @@
-/* Standard: gnu99 */
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
-#include "strutil.h"
+#include <strutil.h>
 
 /*
  * Checks if a string contains another string.

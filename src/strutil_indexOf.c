@@ -1,10 +1,8 @@
-/* Standard: gnu99 */
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
-#include "strutil.h"
+#include <strutil.h>
 
 /*
  * Gets the first index of a character in a string.
