@@ -1,8 +1,11 @@
-#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
 #include <strutil.h>
+
+#ifdef STRUTIL_DEBUG
+	#include <stdio.h>
+#endif
 
 /*
  * Derives a substring from a given string. (start <= i < end)
