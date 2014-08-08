@@ -1,3 +1,4 @@
+OS=$(shell uname)
 CC=clang
 WARNINGS=-Wall -Wextra -Werror
 SOURCE= $(wildcard ./src/*.c)
@@ -12,9 +13,15 @@ libstrutil.o: $(SOURCE)
 
 .PHONY: install
 install:
+ifeq ($(OS),Linux)
 	chown root:root $(SHARED)
 	chcon -u system_u -t lib_t $(SHARED)
-	mv ./$(SHARED) /lib
+else ifeq ($(OS),FreeBSD)
+	chown root:wheel $(SHARED)
+	chmod 444 $(SHARED)
+	chmod 444 $(wildcard ./include/*.h)
+endif
+	mv $(SHARED) /lib
 	mkdir -p $(PATH_INCLUDE)/strutil
 	cp ./include/strutil.h $(PATH_INCLUDE)/strutil
 	ldconfig

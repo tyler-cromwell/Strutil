@@ -20,8 +20,23 @@
 
 ***
 
+## Documentation
+
+  Man pages are on the way! For now read the comments above each function.
+
+***
+
 ## Contributing
   Submit a pull request! Upon submission I will review any and all changes.
+
+***
+
+## Building
+
+  To use Strutil...<br>
+	1) Insert `#include <strutil/strutil.h>` into your source file(s).<br>
+	2) Compile with the `-lstrutil` flag.<br>
+  It's as easy as that!
 
 ***
 
