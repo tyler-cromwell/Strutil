@@ -1,6 +1,6 @@
 ## What is Strutil?
 
-  Strutil is a simple string library that I've been using to supplement the string functions in the [C Standard Library][C Standard Library].
+  Strutil is a simple string library that I've been using to supplement the string functions in the [C Standard Library][C Standard Library]. It originally spawned from [T-Shell][T-Shell].
 
 ***
 
@@ -62,6 +62,8 @@
 ## How to Uninstall
   To uninstall, do the following...<br>
     1) Run `[sudo] gmake uninstall`<br>
+
+[T-Shell]: https://github.com/tyler-cromwell/T-Shell
 
 [C Standard Library]: http://en.wikipedia.org/wiki/C_standard_library
 [Glibc]: http://en.wikipedia.org/wiki/GNU_C_Library
