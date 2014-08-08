@@ -61,7 +61,7 @@
 
 ## How to Uninstall
   To uninstall, do the following...<br>
-    1) Run `[sudo] make uninstall`<br>
+    1) Run `[sudo] gmake uninstall`<br>
 
 [C Standard Library]: http://en.wikipedia.org/wiki/C_standard_library
 [Glibc]: http://en.wikipedia.org/wiki/GNU_C_Library
