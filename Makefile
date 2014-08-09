@@ -1,33 +1,42 @@
-OS=$(shell uname)
-CC=clang
-WARNINGS=-Wall -Wextra -Werror
-SOURCE= $(wildcard ./src/*.c)
-INCLUDE=-I ./include
-SHARED=libstrutil.so
-PATH_INCLUDE=/usr/include
+OS = $(shell uname)
+CC = clang
+CFLAGS = -pedantic -O2 -fPIC -pipe -march=native -Wall -Wextra -Werror
+INCLUDES = -I ./include
+LDFLAGS = -shared
+SRC = $(wildcard ./src/*.c)
+OBJS = $(SRC:c=o)
+LIBRARY = libstrutil.so
 
-libstrutil.o: $(SOURCE)
-	$(CC) $(INCLUDE) -c -pedantic -O2 -fpic -pipe -march=native $(WARNINGS) $(SOURCE)
-	$(CC) $(INCLUDE) -shared $(WARNINGS) ./*.o -o $(SHARED)
-	rm -f ./*.o
+.PHONY: all
+all: $(LIBRARY)
+
+$(LIBRARY): $(OBJS)
+	$(CC) $(CFLAGS) $(INCLUDES) -o $(LIBRARY) $(OBJS) $(LDFLAGS)
+
+.c.o:
+	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
 .PHONY: install
 install:
 ifeq ($(OS),Linux)
-	chown root:root $(SHARED)
-	chcon -u system_u -t lib_t $(SHARED)
+	chown root:root $(LIBRARY)
+	chcon -u system_u -t lib_t $(LIBRARY)
 else ifeq ($(OS),FreeBSD)
-	chown root:wheel $(SHARED)
-	chmod 444 $(SHARED)
+	chown root:wheel $(LIBRARY)
+	chmod 444 $(LIBRARY)
 	chmod 444 $(wildcard ./include/*.h)
 endif
-	mv $(SHARED) /lib
-	mkdir -p $(PATH_INCLUDE)/strutil
-	cp ./include/strutil.h $(PATH_INCLUDE)/strutil
+	mv $(LIBRARY) /lib
+	mkdir -p /usr/include/strutil
+	cp ./include/strutil.h /usr/include/strutil
 	ldconfig
 
 .PHONY: uninstall
 uninstall:
-	rm -f /lib/$(SHARED)
-	rm -rf $(PATH_INCLUDE)/strutil
+	rm -f /lib/$(LIBRARY)
+	rm -rf /usr/include/strutil
 	ldconfig
+
+.PHONY: clean
+clean:
+	rm -rf ./src/*.o
