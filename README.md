@@ -2,8 +2,6 @@
 
   Strutil is a simple string library that I've been using to supplement the string functions in the [C Standard Library][C Standard Library]. It originally spawned from [T-Shell][T-Shell].
 
-***
-
 ## Functions
   - `contains`: Tests if a sequence is contained in a string.
   - `endsWith`: Tests if a string ends with a given token.
@@ -18,18 +16,12 @@
   - `trim`: Trims the leading and trailing spaces in a string.
   - `uppercase`: Sets all letters to uppercase.
 
-***
-
 ## Documentation
 
   Man pages are on the way! For now read the comments above each function.
 
-***
-
 ## Contributing
   Submit a pull request! Upon submission I will review any and all changes.
-
-***
 
 ## Building
 
@@ -38,14 +30,10 @@
 	2) Compile with the `-lstrutil` flag.<br>
   It's as easy as that!
 
-***
-
 ## Dependencies
   - glibc (2.16 or later) ([GNU C Library][Glibc])
   - gcc ([GNU Compiler Collection][GCC]) OR clang ([Clang][Clang]/[LLVM][LLVM])
   - gmake ([GNU Make][Gmake])
-
-***
 
 ## How to Install
   To install, do the following...<br>
@@ -56,8 +44,6 @@
     5) `[sudo] gmake install`<br><br>
   Note(s):<br>
 	1) The Makefile specifies [Clang][Clang]/[LLVM][LLVM] as the compiler, feel free to change that.<br>
-
-***
 
 ## How to Uninstall
   To uninstall, do the following...<br>
