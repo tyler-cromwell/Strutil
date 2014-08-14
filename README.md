@@ -23,6 +23,9 @@
 ## Contributing
   Submit a pull request! Upon submission I will review any and all changes.
 
+## Bugs
+  All bugs and other issues should be reported on the github issue tracker.
+
 ## Building
 
   To use Strutil...<br>
