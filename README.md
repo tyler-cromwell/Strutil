@@ -1,4 +1,4 @@
-## What is Strutil?
+# What is Strutil?
 
   Strutil is a simple string library that I've been using to supplement the string functions in the [C Standard Library][C Standard Library]. It originally spawned from [T-Shell][T-Shell].
 
@@ -38,7 +38,7 @@
 ## How to Install
   To install, do the following...<br>
     1) Dowload the zip file from the link on the right or `git clone` this repo<br>
-    2) `unzip master.zip` (If zip was downloaded)<br>
+    2) `unzip Strutil-master.zip` (If zip was downloaded)<br>
     3) `cd Strutil-master` or `cd Strutil`<br>
     4) `gmake`<br>
     5) `[sudo] gmake install`<br><br>
