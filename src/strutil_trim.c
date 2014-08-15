@@ -21,13 +21,13 @@ char* strutil_trim(char* original) {
 	#ifdef STRUTIL_DEBUG
 		printf(COLOR_YELLOW "STRUTIL: TRIM: Trimming \"%s\"\n" COLOR_RESET, original);
 	#endif
-		int i = 0;
-		while (original[i] == ASCII_SPACE) i++;
+		size_t i = 0;
+		while (original[i] == ASCII_SPACE && i < strlen(original)) i++;
 
-		int start = i;
-		for (i = strlen(original)-1; original[i] == ASCII_SPACE; i--);
+		size_t start = i;
+		for (i = strlen(original)-1; original[i] == ASCII_SPACE && i > 0; i--);
 
-		int end = i;
+		size_t end = i;
 		char* new = calloc(end-start+2, sizeof(char));
 		strncpy(new, original+start, end-start+1);
 
@@ -37,7 +37,7 @@ char* strutil_trim(char* original) {
 		return new;
 	} else {
 	#ifdef STRUTIL_DEBUG
-		printf(COLOR_YELLOW "STRUTIL: TRIM: Nothing done\n" COLOR_RESET);
+		printf(COLOR_YELLOW "STRUTIL: TRIM: Null was given, nothing done\n" COLOR_RESET);
 	#endif
 		return NULL;
 	}
