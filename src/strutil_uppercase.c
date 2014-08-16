@@ -4,7 +4,7 @@
 #include <strutil.h>
 
 #ifdef STRUTIL_DEBUG
-	#include <stdio.h>
+#include <stdio.h>
 #endif
 
 /**
@@ -17,7 +17,7 @@
  */
 char* strutil_uppercase(char* string) {
 	#ifdef STRUTIL_DEBUG
-		printf(COLOR_YELLOW "STRUTIL: UPPERCASE: Setting all alphabetic characters in \"%s\" to uppercase.\n" COLOR_RESET, string);
+	printf(COLOR_YELLOW "STRUTIL: UPPERCASE: Setting all alphabetic characters in \"%s\" to uppercase.\n" COLOR_RESET, string);
 	#endif
 
 	size_t length = strlen(string);
@@ -26,12 +26,13 @@ char* strutil_uppercase(char* string) {
 	strncpy(upper, string, length);
 
 	for (size_t i = 0; i < length; i++) {
-		if (97 <= upper[i] && upper[i] <= 122)
+		if (97 <= upper[i] && upper[i] <= 122) {
 			upper[i] = (char) (string[i] - 32);
+		}
 	}
 
 	#ifdef STRUTIL_DEBUG
-		printf(COLOR_YELLOW "STRUTIL: UPPERCASE: \"%s\" transformed to \"%s\".\n" COLOR_RESET, string, upper);
+	printf(COLOR_YELLOW "STRUTIL: UPPERCASE: \"%s\" transformed to \"%s\".\n" COLOR_RESET, string, upper);
 	#endif
 
 	return upper;

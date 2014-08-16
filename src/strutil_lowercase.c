@@ -4,7 +4,7 @@
 #include <strutil.h>
 
 #ifdef STRUTIL_DEBUG
-	#include <stdio.h>
+#include <stdio.h>
 #endif
 
 /**
@@ -17,7 +17,7 @@
  */
 char* strutil_lowercase(char* string) {
 	#ifdef STRUTIL_DEBUG
-		printf(COLOR_YELLOW "STRUTIL: LOWERCASE: Setting all alphabetic characters in \"%s\" to lowercase.\n" COLOR_RESET, string);
+	printf(COLOR_YELLOW "STRUTIL: LOWERCASE: Setting all alphabetic characters in \"%s\" to lowercase.\n" COLOR_RESET, string);
 	#endif
 
 	size_t length = strlen(string);
@@ -26,12 +26,13 @@ char* strutil_lowercase(char* string) {
 	strncpy(lower, string, length);
 
 	for (size_t i = 0; i < length; i++) {
-		if (65 <= lower[i] && lower[i] <= 90)
+		if (65 <= lower[i] && lower[i] <= 90) {
 			lower[i] = (char) (string[i] + 32);
+		}
 	}
 
 	#ifdef STRUTIL_DEBUG
-		printf(COLOR_YELLOW "STRUTIL: LOWERCASE: \"%s\" transformed to \"%s\".\n" COLOR_RESET, string, lower);
+	printf(COLOR_YELLOW "STRUTIL: LOWERCASE: \"%s\" transformed to \"%s\".\n" COLOR_RESET, string, lower);
 	#endif
 
 	return lower;

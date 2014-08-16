@@ -4,7 +4,7 @@
 #include <strutil.h>
 
 #ifdef STRUTIL_DEBUG
-	#include <stdio.h>
+#include <stdio.h>
 #endif
 
 /*
@@ -18,9 +18,9 @@
  */
 char* strutil_trim(char* original) {
 	if (original != NULL) {
-	#ifdef STRUTIL_DEBUG
+		#ifdef STRUTIL_DEBUG
 		printf(COLOR_YELLOW "STRUTIL: TRIM: Trimming \"%s\"\n" COLOR_RESET, original);
-	#endif
+		#endif
 		size_t i = 0;
 		while (original[i] == ASCII_SPACE && i < strlen(original)) i++;
 
@@ -31,14 +31,14 @@ char* strutil_trim(char* original) {
 		char* new = calloc(end-start+2, sizeof(char));
 		strncpy(new, original+start, end-start+1);
 
-	#ifdef STRUTIL_DEBUG
+		#ifdef STRUTIL_DEBUG
 		printf(COLOR_YELLOW "STRUTIL: TRIM: \"%s\" trimmed to \"%s\"\n" COLOR_RESET, original, new);
-	#endif
+		#endif
 		return new;
 	} else {
-	#ifdef STRUTIL_DEBUG
+		#ifdef STRUTIL_DEBUG
 		printf(COLOR_YELLOW "STRUTIL: TRIM: Null was given, nothing done\n" COLOR_RESET);
-	#endif
+		#endif
 		return NULL;
 	}
 }

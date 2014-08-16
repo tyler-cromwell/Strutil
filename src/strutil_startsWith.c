@@ -4,7 +4,7 @@
 #include <strutil.h>
 
 #ifdef STRUTIL_DEBUG
-	#include <stdio.h>
+#include <stdio.h>
 #endif
 
 /*
@@ -17,7 +17,7 @@
  */
 inline int strutil_startsWith(char* string, char* starttok) {
 	#ifdef STRUTIL_DEBUG
-		printf(COLOR_YELLOW "STRUTIL: STARTS_WITH: Comparing the first \'%zd\' bytes of \"%s\" to \"%s\"\n" COLOR_RESET, strlen(starttok), string, starttok);
+	printf(COLOR_YELLOW "STRUTIL: STARTS_WITH: Comparing the first \'%zd\' bytes of \"%s\" to \"%s\"\n" COLOR_RESET, strlen(starttok), string, starttok);
 	#endif
 	return !strncmp(string, starttok, strlen(starttok));
 }

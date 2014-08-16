@@ -4,7 +4,7 @@
 #include <strutil.h>
 
 #ifdef STRUTIL_DEBUG
-	#include <stdio.h>
+#include <stdio.h>
 #endif
 
 /*
@@ -19,7 +19,7 @@
  */
 int* strutil_indexesOf(char* string, char character, size_t* amount) {
 	#ifdef STRUTIL_DEBUG
-		printf(COLOR_YELLOW "STRUTIL: INDEXES_OF: Searching \"%s\" for all occurences of \'%c\'\n" COLOR_RESET, string, character);
+	printf(COLOR_YELLOW "STRUTIL: INDEXES_OF: Searching \"%s\" for all occurences of \'%c\'\n" COLOR_RESET, string, character);
 	#endif
 
 	size_t length = strlen(string);
@@ -29,7 +29,7 @@ int* strutil_indexesOf(char* string, char character, size_t* amount) {
 	for (size_t i = 0; i < length; i++) {
 		if (string[i] == character) {
 			#ifdef STRUTIL_DEBUG
-				printf(COLOR_YELLOW "STRUTIL: INDEXES_OF: '%c' found at '%zd'.\n" COLOR_RESET, character, i);
+			printf(COLOR_YELLOW "STRUTIL: INDEXES_OF: '%c' found at '%zu'.\n" COLOR_RESET, character, i);
 			#endif
 			buff[*amount] = i;
 			(*amount)++;
@@ -37,8 +37,9 @@ int* strutil_indexesOf(char* string, char character, size_t* amount) {
 	}
 
 	int* indexes = calloc(*amount, sizeof(int));
-	for (size_t i = 0; i < (*amount); i++)
+	for (size_t i = 0; i < (*amount); i++) {
 		indexes[i] = buff[i];
+	}
 
 	return indexes;
 }

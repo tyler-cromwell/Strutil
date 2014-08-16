@@ -4,7 +4,7 @@
 #include <strutil.h>
 
 #ifdef STRUTIL_DEBUG
-	#include <stdio.h>
+#include <stdio.h>
 #endif
 
 /*
@@ -23,9 +23,9 @@ char** strutil_split(char* string, const char* delimiter, size_t* tokenAmount) {
 	strncpy(local, string, strlen(string)+1);
 
 	#ifdef STRUTIL_DEBUG
-		char original[strlen(string)+1];
-		strncpy(original, string, strlen(string)+1);
-		printf(COLOR_YELLOW "STRUTIL: SPLIT_STRING: Spliting \"%s\" at every occurence of \"%s\"\n" COLOR_RESET, string, delimiter);
+	char original[strlen(string)+1];
+	strncpy(original, string, strlen(string)+1);
+	printf(COLOR_YELLOW "STRUTIL: SPLIT_STRING: Spliting \"%s\" at every occurence of \"%s\"\n" COLOR_RESET, string, delimiter);
 	#endif
 
 	char** tokens = calloc(1, sizeof(char*));
@@ -34,24 +34,27 @@ char** strutil_split(char* string, const char* delimiter, size_t* tokenAmount) {
 	for (size_t i = 0; tok != NULL; i++) {
 		size_t length = strlen(tok)+1;
 		char* token = calloc(length, sizeof(char));
-		strncpy(token, tok, length);
 
+		strncpy(token, tok, length);
 		tokens[i] = token;
 		(*tokenAmount)++;
 		tok = strtok(NULL, delimiter);
-		if (tok != NULL)
+
+		if (tok != NULL) {
 			tokens = realloc(tokens, ((*tokenAmount)+1) * sizeof(char*));
+		}
 	}
 
 	#ifdef STRUTIL_DEBUG
-		printf(COLOR_YELLOW "STRUTIL: SPLIT_STRING: \"%s\" after split: [", original);
-		for (size_t i = 0; i < *tokenAmount; i++) {
-			if (i == *tokenAmount-1)
-				printf("\"%s\"", tokens[i]);
-			else
-				printf("\"%s\", ", tokens[i]);
+	printf(COLOR_YELLOW "STRUTIL: SPLIT_STRING: \"%s\" after split: [", original);
+	for (size_t i = 0; i < *tokenAmount; i++) {
+		if (i == *tokenAmount-1) {
+			printf("\"%s\"", tokens[i]);
+		} else {
+			printf("\"%s\", ", tokens[i]);
 		}
-		printf("]\n" COLOR_RESET);
+	}
+	printf("]\n" COLOR_RESET);
 	#endif
 
 	free(local);
