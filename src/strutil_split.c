@@ -18,7 +18,7 @@
  *   Free the string array when done.
  * Returns: an array of tokens.
  */
-char** strutil_split(char* string, const char* delimiter, size_t* tokenAmount) {
+char** strutil_split(char* string, char* delimiter, size_t* tokenAmount) {
 	char* local = calloc(strlen(string)+1, sizeof(char));
 	strncpy(local, string, strlen(string)+1);
 

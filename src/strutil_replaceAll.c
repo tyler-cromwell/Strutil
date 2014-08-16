@@ -23,7 +23,7 @@ void strutil_replaceAll(char* string, char old, char new) {
 	#endif
 
 	size_t amount = 0;
-	int* indexes = strutil_indexesOf(string, old, &amount);
+	size_t* indexes = strutil_indexesOf(string, old, &amount);
 
 	for (size_t i = 0; i < amount; i++) {
 		string[indexes[i]] = new;

@@ -12,13 +12,13 @@
  * Substring WILL BE null-terminated.
  * Argument(s):
  *   char* original: the string to derive the substring from.
- *   int start: the starting index.
- *   int end: the ending index.
+ *   size_t start: the starting index.
+ *   size_t end: the ending index.
  * Memory Management:
  *   Free the returned pointer when done.
  * Returns: the substring.
  */
-char* strutil_substring(char* original, int start, int end) {
+char* strutil_substring(char* original, size_t start, size_t end) {
 	#ifdef STRUTIL_DEBUG
 	printf(COLOR_YELLOW "STRUTIL: SUBSTRING: Retrieving substring of \"%s\" from %zu to %zu\n" COLOR_RESET, original, start, end);
 	#endif
