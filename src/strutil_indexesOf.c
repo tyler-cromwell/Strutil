@@ -18,28 +18,28 @@
  * Returns: an array of all the indexes that 'character' is found at.
  */
 size_t* strutil_indexesOf(char* string, char character, size_t* amount) {
-	#ifdef STRUTIL_DEBUG
-	printf(COLOR_YELLOW "STRUTIL: INDEXES_OF: Searching \"%s\" for all occurences of \'%c\'\n" COLOR_RESET, string, character);
-	#endif
+    #ifdef STRUTIL_DEBUG
+    printf(COLOR_YELLOW "STRUTIL: INDEXES_OF: Searching \"%s\" for all occurences of \'%c\'\n" COLOR_RESET, string, character);
+    #endif
 
-	size_t length = strlen(string);
-	size_t buff[length];
-	memset(buff, 0, length);
+    size_t length = strlen(string);
+    size_t buff[length];
+    memset(buff, 0, length);
 
-	for (size_t i = 0; i < length; i++) {
-		if (string[i] == character) {
-			#ifdef STRUTIL_DEBUG
-			printf(COLOR_YELLOW "STRUTIL: INDEXES_OF: '%c' found at '%zu'.\n" COLOR_RESET, character, i);
-			#endif
-			buff[*amount] = i;
-			(*amount)++;
-		}
-	}
+    for (size_t i = 0; i < length; i++) {
+        if (string[i] == character) {
+            #ifdef STRUTIL_DEBUG
+            printf(COLOR_YELLOW "STRUTIL: INDEXES_OF: '%c' found at '%zu'.\n" COLOR_RESET, character, i);
+            #endif
+            buff[*amount] = i;
+            (*amount)++;
+        }
+    }
 
-	size_t* indexes = calloc(*amount, sizeof(size_t));
-	for (size_t i = 0; i < (*amount); i++) {
-		indexes[i] = buff[i];
-	}
+    size_t* indexes = calloc(*amount, sizeof(size_t));
+    for (size_t i = 0; i < (*amount); i++) {
+        indexes[i] = buff[i];
+    }
 
-	return indexes;
+    return indexes;
 }
