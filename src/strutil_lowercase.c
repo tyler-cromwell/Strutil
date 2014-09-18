@@ -17,7 +17,7 @@
  */
 char* strutil_lowercase(char* string) {
     #ifdef STRUTIL_DEBUG
-    printf(COLOR_YELLOW "STRUTIL: LOWERCASE: Setting all alphabetic characters in \"%s\" to lowercase.\n" COLOR_RESET, string);
+    fprintf(stderr, COLOR_YELLOW "STRUTIL: LOWERCASE: Setting all alphabetic characters in \"%s\" to lowercase.\n" COLOR_RESET, string);
     #endif
 
     size_t length = strlen(string);
@@ -32,7 +32,7 @@ char* strutil_lowercase(char* string) {
     }
 
     #ifdef STRUTIL_DEBUG
-    printf(COLOR_YELLOW "STRUTIL: LOWERCASE: \"%s\" transformed to \"%s\".\n" COLOR_RESET, string, lower);
+    fprintf(stderr, COLOR_YELLOW "STRUTIL: LOWERCASE: \"%s\" transformed to \"%s\".\n" COLOR_RESET, string, lower);
     #endif
 
     return lower;

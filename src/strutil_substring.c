@@ -20,14 +20,14 @@
  */
 char* strutil_substring(char* original, size_t start, size_t end) {
     #ifdef STRUTIL_DEBUG
-    printf(COLOR_YELLOW "STRUTIL: SUBSTRING: Retrieving substring of \"%s\" from %zu to %zu\n" COLOR_RESET, original, start, end);
+    fprintf(stderr, COLOR_YELLOW "STRUTIL: SUBSTRING: Retrieving substring of \"%s\" from %zu to %zu\n" COLOR_RESET, original, start, end);
     #endif
 
     char* substring = calloc((end-start)+1, sizeof(char));
     strncpy(substring, original+start, end-start);
 
     #ifdef STRUTIL_DEBUG
-    printf(COLOR_YELLOW "STRUTIL: SUBSTRING: Substring of \"%s\" from %zu to %zu is \"%s\"\n" COLOR_RESET, original, start, end, substring);
+    fprintf(stderr, COLOR_YELLOW "STRUTIL: SUBSTRING: Substring of \"%s\" from %zu to %zu is \"%s\"\n" COLOR_RESET, original, start, end, substring);
     #endif
     return substring;
 }

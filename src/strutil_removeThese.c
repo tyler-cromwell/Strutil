@@ -20,7 +20,7 @@
  */
 char* strutil_removeThese(char* string, char* chars) {
     #ifdef STRUTIL_DEBUG
-    printf(COLOR_YELLOW "STRUTIL: REMOVE_THESE: Attempting to remove characters \"%s\" from \"%s\"\n" COLOR_RESET, chars, string);
+    fprintf(stderr, COLOR_YELLOW "STRUTIL: REMOVE_THESE: Attempting to remove characters \"%s\" from \"%s\"\n" COLOR_RESET, chars, string);
     #endif
 
     char* shortened = calloc(strlen(string) - strlen(chars) + 1, sizeof(char));
@@ -30,7 +30,7 @@ char* strutil_removeThese(char* string, char* chars) {
         for (size_t j = 0; j < strlen(chars); j++) {
             if (string[i] != chars[j]) {
                 #ifdef STRUTIL_DEBUG
-                printf(COLOR_YELLOW "STRUTIL: REMOVE_THESE: \'%c\'\n" COLOR_RESET, string[i]);
+                fprintf(stderr, COLOR_YELLOW "STRUTIL: REMOVE_THESE: \'%c\'\n" COLOR_RESET, string[i]);
                 #endif
                 shortened[index] = string[i];
                 index++;
@@ -41,7 +41,7 @@ char* strutil_removeThese(char* string, char* chars) {
     shortened[index] = ASCII_NULL;
 
     #ifdef STRUTIL_DEBUG
-    printf(COLOR_YELLOW "STRUTIL: REMOVE_THESE: \"%s\" shortened to \"%s\"\n" COLOR_RESET, string, shortened);
+    fprintf(stderr, COLOR_YELLOW "STRUTIL: REMOVE_THESE: \"%s\" shortened to \"%s\"\n" COLOR_RESET, string, shortened);
     #endif
     return shortened;
 }

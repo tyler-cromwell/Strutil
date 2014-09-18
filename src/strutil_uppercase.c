@@ -17,7 +17,7 @@
  */
 char* strutil_uppercase(char* string) {
     #ifdef STRUTIL_DEBUG
-    printf(COLOR_YELLOW "STRUTIL: UPPERCASE: Setting all alphabetic characters in \"%s\" to uppercase.\n" COLOR_RESET, string);
+    fprintf(stderr, COLOR_YELLOW "STRUTIL: UPPERCASE: Setting all alphabetic characters in \"%s\" to uppercase.\n" COLOR_RESET, string);
     #endif
 
     size_t length = strlen(string);
@@ -32,7 +32,7 @@ char* strutil_uppercase(char* string) {
     }
 
     #ifdef STRUTIL_DEBUG
-    printf(COLOR_YELLOW "STRUTIL: UPPERCASE: \"%s\" transformed to \"%s\".\n" COLOR_RESET, string, upper);
+    fprintf(stderr, COLOR_YELLOW "STRUTIL: UPPERCASE: \"%s\" transformed to \"%s\".\n" COLOR_RESET, string, upper);
     #endif
 
     return upper;
