@@ -36,21 +36,19 @@
 ## Dependencies
   - glibc (2.16 or later) ([GNU C Library][Glibc])
   - gcc ([GNU Compiler Collection][GCC]) OR clang ([Clang][Clang]/[LLVM][LLVM])
-  - gmake ([GNU Make][Gmake])
 
 ## How to Install
-  To install, do the following...<br>
-    1) Dowload the zip file from the link on the right or `git clone` this repo<br>
-    2) `unzip Strutil-master.zip` (If zip was downloaded)<br>
-    3) `cd Strutil-master` or `cd Strutil`<br>
-    4) `gmake`<br>
-    5) `[sudo] gmake install`<br><br>
-  Note(s):<br>
-	1) The Makefile specifies [Clang][Clang]/[LLVM][LLVM] as the compiler, feel free to change that.<br>
+  1) `autoreconf --install` (If cloning repo)<br>
+  2) `./configure`<br>
+  3) `make`<br>
+  4) Install...<br>
+  - `[sudo] make install` (with debug symbols)<br>
+  - `[sudo] make install-strip` (without)<br>
+  Note: The default compiler is [Clang][Clang], but feel free to change it.<br>
 
 ## How to Uninstall
-  To uninstall, do the following...<br>
-    1) Run `[sudo] gmake uninstall`<br>
+  1) Run `[sudo] make uninstall`<br>
+  That's it...
 
 [T-Shell]: https://github.com/tyler-cromwell/T-Shell
 
