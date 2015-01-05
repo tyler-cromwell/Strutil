@@ -6,7 +6,7 @@ AC_INIT([Strutil], [1.0.1], [tyler@csh.rit.edu], [strutil], [https://github.com/
 AC_CONFIG_SRCDIR([src/strutil_removeThese.c])
 AC_CONFIG_HEADERS([config.h])
 AC_CONFIG_MACRO_DIR([m4])
-AM_INIT_AUTOMAKE([foreign -Wall -Werror -Wportability]) # ? subdir-objects ?
+AM_INIT_AUTOMAKE([foreign -Wall -Werror -Wportability])
 
 # Checks for programs.
 AC_PROG_CC_STDC
