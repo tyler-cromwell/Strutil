@@ -38,10 +38,9 @@
   - gcc ([GNU Compiler Collection][GCC]) OR clang ([Clang][Clang]/[LLVM][LLVM])
 
 ## How to Install
-  1) `autoreconf --install` (If cloning repo)<br>
-  2) `./configure`<br>
-  3) `make`<br>
-  4) Install...<br>
+  1) `./configure`<br>
+  2) `make`<br>
+  3) Install...<br>
   - `[sudo] make install` (with debug symbols)<br>
   - `[sudo] make install-strip` (without)<br>
   Note: The default compiler is [Clang][Clang], but feel free to change it.<br>

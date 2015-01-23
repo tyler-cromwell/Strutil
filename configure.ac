@@ -2,7 +2,7 @@
 # Process this file with autoconf to produce a configure script.
 
 AC_PREREQ([2.69])
-AC_INIT([Strutil], [1.0.1], [tyler@csh.rit.edu], [strutil], [https://github.com/tyler-cromwell/Strutil])
+AC_INIT([Strutil], [1.1.0], [tyler@csh.rit.edu], [strutil], [https://github.com/tyler-cromwell/Strutil])
 AC_CONFIG_SRCDIR([src/strutil_removeThese.c])
 AC_CONFIG_HEADERS([config.h])
 AC_CONFIG_MACRO_DIR([m4])

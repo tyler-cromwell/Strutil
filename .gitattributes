@@ -1,8 +1,12 @@
 include/*.h linguist-language=C
 src/*.c linguist-language=C
 
+ar-lib linguist-language=Text
+config.guess linguist-language=Text
+config.sub linguist-language=Text
 configure linguist-language=Text
 compile linguist-language=Text
 depcomp linguist-language=Text
 install-sh linguist-language=Text
+ltmain.sh linguist-language=Text
 missing linguist-language=Text
