@@ -1,2 +1,8 @@
 include/*.h linguist-language=C
 src/*.c linguist-language=C
+
+configure linguist-language=Text
+compile linguist-language=Text
+depcomp linguist-language=Text
+install-sh linguist-language=Text
+missing linguist-language=Text
