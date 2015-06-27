@@ -10,13 +10,13 @@
 /*
  * Trims the leading and trailing whitespace from a string.
  * Argument(s):
- *   char* original: the string to be trimmed.
+ *   char *original: the string to be trimmed.
  * Note for Memory Management:
  *   Free the returned pointer when done.
  * Returns:
  *   The trimmed version of 'original' or NULL if original was NULL
  */
-char* strutil_trim(char* original) {
+char *strutil_trim(char *original) {
     if (original != NULL) {
         #ifdef STRUTIL_DEBUG
         fprintf(stderr, COLOR_YELLOW "STRUTIL: TRIM: Trimming \"%s\"\n" COLOR_RESET, original);
@@ -28,7 +28,7 @@ char* strutil_trim(char* original) {
         for (i = strlen(original)-1; original[i] == ASCII_SPACE && i > 0; i--);
 
         size_t end = i;
-        char* new = calloc(end-start+2, sizeof(char));
+        char *new = calloc(end-start+2, sizeof(char));
         strncpy(new, original+start, end-start+1);
 
         #ifdef STRUTIL_DEBUG

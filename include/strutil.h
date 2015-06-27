@@ -18,17 +18,17 @@
     #define ASCII_NULL 0 // The ASCII value for the Null character.
 #endif
 
-extern int strutil_contains(char* string, char* sequence);
-extern int strutil_endsWith(char* string, char* endtok);
-extern int strutil_startsWith(char* string, char* starttok);
-extern size_t strutil_indexOf(char* string, char character);
-extern size_t* strutil_indexesOf(char* string, char character, size_t* amount);
-extern char* strutil_lowercase(char* string);
-extern char* strutil_removeThese(char* string, char* chars);
-extern void strutil_replaceAll(char* string, char old, char new);
-extern char** strutil_split(char* string, char* delimiter, size_t* tokenAmount);
-extern char* strutil_substring(char* str, size_t start, size_t end);
-extern char* strutil_trim(char* original);
-extern char* strutil_uppercase(char* string);
+extern int strutil_contains(char*, char*);
+extern int strutil_endsWith(char*, char*);
+extern int strutil_startsWith(char*, char*);
+extern size_t strutil_indexOf(char*, char);
+extern size_t *strutil_indexesOf(char*, char, size_t*);
+extern char *strutil_lowercase(char*);
+extern char *strutil_removeThese(char*, char*);
+extern void strutil_replaceAll(char*, char, char);
+extern char **strutil_split(char*, char*, size_t*);
+extern char *strutil_substring(char*, size_t, size_t);
+extern char *strutil_trim(char*);
+extern char *strutil_uppercase(char*);
 
 #endif

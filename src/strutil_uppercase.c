@@ -15,13 +15,13 @@
  *   Free the returned pointer when done.
  * Returns: A new string with uppercase letters.
  */
-char* strutil_uppercase(char* string) {
+char *strutil_uppercase(char *string) {
     #ifdef STRUTIL_DEBUG
     fprintf(stderr, COLOR_YELLOW "STRUTIL: UPPERCASE: Setting all alphabetic characters in \"%s\" to uppercase.\n" COLOR_RESET, string);
     #endif
 
     size_t length = strlen(string);
-    char* upper = calloc(length+1, sizeof(char));
+    char *upper = calloc(length+1, sizeof(char));
 
     strncpy(upper, string, length);
 
