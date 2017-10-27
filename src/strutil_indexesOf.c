@@ -20,7 +20,7 @@
  */
 size_t *strutil_indexesOf(char *string, char character, size_t *amount) {
 #ifdef STRUTIL_DEBUG
-    fprintf(stderr, COLOR_YELLOW "STRUTIL: INDEXES_OF: Searching \"%s\" for all occurences of \'%c\'\n" COLOR_RESET, string, character);
+    fprintf(stdout, COLOR_YELLOW "STRUTIL: INDEXES_OF: Searching \"%s\" for all occurences of \'%c\'\n" COLOR_RESET, string, character);
 #endif
 
     size_t length = strlen(string);
@@ -30,7 +30,7 @@ size_t *strutil_indexesOf(char *string, char character, size_t *amount) {
     for (size_t i = 0; i < length; i++) {
         if (string[i] == character) {
 #ifdef STRUTIL_DEBUG
-            fprintf(stderr, COLOR_YELLOW "STRUTIL: INDEXES_OF: '%c' found at '%zu'.\n" COLOR_RESET, character, i);
+            fprintf(stdout, COLOR_YELLOW "STRUTIL: INDEXES_OF: '%c' found at '%zu'.\n" COLOR_RESET, character, i);
 #endif
             buff[*amount] = i;
             (*amount)++;

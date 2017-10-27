@@ -26,7 +26,7 @@ char **strutil_split(char *string, char *delimiter, size_t *tokenAmount) {
 #ifdef STRUTIL_DEBUG
     char original[strlen(string)+1];
     strncpy(original, string, strlen(string)+1);
-    fprintf(stderr, COLOR_YELLOW "STRUTIL: SPLIT_STRING: Spliting \"%s\" at every occurence of \"%s\"\n" COLOR_RESET, string, delimiter);
+    fprintf(stdout, COLOR_YELLOW "STRUTIL: SPLIT_STRING: Spliting \"%s\" at every occurence of \"%s\"\n" COLOR_RESET, string, delimiter);
 #endif
 
     char **tokens = calloc(1, sizeof(char*));
@@ -47,17 +47,17 @@ char **strutil_split(char *string, char *delimiter, size_t *tokenAmount) {
     }
 
 #ifdef STRUTIL_DEBUG
-    fprintf(stderr, COLOR_YELLOW "STRUTIL: SPLIT_STRING: \"%s\" after split: [", original);
+    fprintf(stdout, COLOR_YELLOW "STRUTIL: SPLIT_STRING: \"%s\" after split: [", original);
 
     for (size_t i = 0; i < *tokenAmount; i++) {
         if (i == *tokenAmount-1) {
-            fprintf(stderr, "\"%s\"", tokens[i]);
+            fprintf(stdout, "\"%s\"", tokens[i]);
         } else {
-            fprintf(stderr, "\"%s\", ", tokens[i]);
+            fprintf(stdout, "\"%s\", ", tokens[i]);
         }
     }
 
-    fprintf(stderr, "]\n" COLOR_RESET);
+    fprintf(stdout, "]\n" COLOR_RESET);
 #endif
 
     free(local);
