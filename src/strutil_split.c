@@ -7,6 +7,7 @@
 #include <stdio.h>
 #endif
 
+
 /*
  * Splits up a string at a given token.
  * Each element WILL BE null-terminated.
@@ -22,11 +23,11 @@ char **strutil_split(char *string, char *delimiter, size_t *tokenAmount) {
     char *local = calloc(strlen(string)+1, sizeof(char));
     strncpy(local, string, strlen(string)+1);
 
-    #ifdef STRUTIL_DEBUG
+#ifdef STRUTIL_DEBUG
     char original[strlen(string)+1];
     strncpy(original, string, strlen(string)+1);
     fprintf(stderr, COLOR_YELLOW "STRUTIL: SPLIT_STRING: Spliting \"%s\" at every occurence of \"%s\"\n" COLOR_RESET, string, delimiter);
-    #endif
+#endif
 
     char **tokens = calloc(1, sizeof(char*));
     char *tok = strtok(local, delimiter);
@@ -45,8 +46,9 @@ char **strutil_split(char *string, char *delimiter, size_t *tokenAmount) {
         }
     }
 
-    #ifdef STRUTIL_DEBUG
+#ifdef STRUTIL_DEBUG
     fprintf(stderr, COLOR_YELLOW "STRUTIL: SPLIT_STRING: \"%s\" after split: [", original);
+
     for (size_t i = 0; i < *tokenAmount; i++) {
         if (i == *tokenAmount-1) {
             fprintf(stderr, "\"%s\"", tokens[i]);
@@ -54,8 +56,9 @@ char **strutil_split(char *string, char *delimiter, size_t *tokenAmount) {
             fprintf(stderr, "\"%s\", ", tokens[i]);
         }
     }
+
     fprintf(stderr, "]\n" COLOR_RESET);
-    #endif
+#endif
 
     free(local);
     return tokens;

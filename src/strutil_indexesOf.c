@@ -7,6 +7,7 @@
 #include <stdio.h>
 #endif
 
+
 /*
  * Gets the indexes of a character in a string.
  * Argument(s):
@@ -18,9 +19,9 @@
  * Returns: an array of all the indexes that 'character' is found at.
  */
 size_t *strutil_indexesOf(char *string, char character, size_t *amount) {
-    #ifdef STRUTIL_DEBUG
+#ifdef STRUTIL_DEBUG
     fprintf(stderr, COLOR_YELLOW "STRUTIL: INDEXES_OF: Searching \"%s\" for all occurences of \'%c\'\n" COLOR_RESET, string, character);
-    #endif
+#endif
 
     size_t length = strlen(string);
     size_t buff[length];
@@ -28,15 +29,16 @@ size_t *strutil_indexesOf(char *string, char character, size_t *amount) {
 
     for (size_t i = 0; i < length; i++) {
         if (string[i] == character) {
-            #ifdef STRUTIL_DEBUG
+#ifdef STRUTIL_DEBUG
             fprintf(stderr, COLOR_YELLOW "STRUTIL: INDEXES_OF: '%c' found at '%zu'.\n" COLOR_RESET, character, i);
-            #endif
+#endif
             buff[*amount] = i;
             (*amount)++;
         }
     }
 
     size_t *indexes = calloc(*amount, sizeof(size_t));
+
     for (size_t i = 0; i < (*amount); i++) {
         indexes[i] = buff[i];
     }

@@ -7,6 +7,7 @@
 #include <stdio.h>
 #endif
 
+
 /**
  * Sets alphabetic characters to lowercase.
  * Argument(s):
@@ -16,13 +17,12 @@
  * Returns: A new string with lowercase letters.
  */
 char *strutil_lowercase(char *string) {
-    #ifdef STRUTIL_DEBUG
+#ifdef STRUTIL_DEBUG
     fprintf(stderr, COLOR_YELLOW "STRUTIL: LOWERCASE: Setting all alphabetic characters in \"%s\" to lowercase.\n" COLOR_RESET, string);
-    #endif
+#endif
 
     size_t length = strlen(string);
     char *lower = calloc(length+1, sizeof(char));
-
     strncpy(lower, string, length);
 
     for (size_t i = 0; i < length; i++) {
@@ -31,9 +31,9 @@ char *strutil_lowercase(char *string) {
         }
     }
 
-    #ifdef STRUTIL_DEBUG
+#ifdef STRUTIL_DEBUG
     fprintf(stderr, COLOR_YELLOW "STRUTIL: LOWERCASE: \"%s\" transformed to \"%s\".\n" COLOR_RESET, string, lower);
-    #endif
+#endif
 
     return lower;
 }
