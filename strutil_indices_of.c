@@ -3,10 +3,6 @@
 
 #include <strutil.h>
 
-#ifdef STRUTIL_DEBUG
-#include <stdio.h>
-#endif
-
 
 /*
  * Gets the indexes of a character in a string.
@@ -18,20 +14,13 @@
  *   Free the returned array when done.
  * Returns: an array of all the indexes that 'character' is found at.
  */
-size_t *strutil_indexesOf(char *string, char character, size_t *amount) {
-#ifdef STRUTIL_DEBUG
-    fprintf(stdout, COLOR_YELLOW "STRUTIL: INDEXES_OF: Searching \"%s\" for all occurences of \'%c\'\n" COLOR_RESET, string, character);
-#endif
-
+size_t *strutil_indices_of(char *string, char character, size_t *amount) {
     size_t length = strlen(string);
     size_t buff[length];
     memset(buff, 0, length);
 
     for (size_t i = 0; i < length; i++) {
         if (string[i] == character) {
-#ifdef STRUTIL_DEBUG
-            fprintf(stdout, COLOR_YELLOW "STRUTIL: INDEXES_OF: '%c' found at '%zu'.\n" COLOR_RESET, character, i);
-#endif
             buff[*amount] = i;
             (*amount)++;
         }
