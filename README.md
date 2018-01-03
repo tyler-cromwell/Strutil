@@ -28,6 +28,7 @@ All bugs and other issues should be reported on the github issue tracker.
 To use Strutil...<br>
 1. Insert `#include <strutil/strutil.h>` into your source file(s).<br>
 2. Compile with the `-lstrutil` flag.<br>
+3. Run `export LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH` in either `~/.bash_profile` or on the command-line.
 It's as easy as that!
 
 ## Dependencies

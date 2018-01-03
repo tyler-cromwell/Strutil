@@ -5,14 +5,15 @@ LIBFLAGS     = -shared
 DEBUGFLAGS   = -O0 -ggdb3 -D DEBUG
 RELEASEFLAGS = -O2
 
-TARGET  = libstrutil.so
-HEADER  = strutil.h
+NAME    = strutil
+TARGET  = lib$(NAME).so
+HEADER  = $(NAME).h
 SOURCES = $(shell find ./ -name '*.c')
 OBJECTS = $(SOURCES:.c=.o)
 
 PREFIX = $(DESTDIR)/usr/local
 LIBDIR = $(PREFIX)/lib
-INCLUDEDIR = $(PREFIX)/include
+INCLUDEDIR = $(PREFIX)/include/$(NAME)
 
 
 all: $(TARGET)
@@ -39,7 +40,10 @@ install-strip: all
 	ldconfig
 
 uninstall:
-	-rm $(LIBDIR)/$(TARGET)
+	rm -f $(LIBDIR)/$(TARGET)
+	rm -f $(INCLUDEDIR)/$(HEADER)
+	rmdir $(INCLUDEDIR)
+	ldconfig
 
 clean:
 	-rm -f $(OBJECTS)
