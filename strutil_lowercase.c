@@ -15,11 +15,12 @@
 char *strutil_lowercase(char *string) {
     size_t length = strlen(string);
     char *lower = calloc(length+1, sizeof(char));
-    strncpy(lower, string, length);
 
     for (size_t i = 0; i < length; i++) {
-        if (65 <= lower[i] && lower[i] <= 90) {
+        if (string[i] >= 'A' && string[i] <= 'Z') {
             lower[i] = (char) (string[i] + 32);
+        } else {
+            lower[i] = string[i];
         }
     }
 
