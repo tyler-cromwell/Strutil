@@ -1,63 +1,110 @@
-CC           = gcc
-CFLAGS       = -std=c11 -pedantic -Wall -Wextra -march=native -fpic
-IFLAGS 		 = ./
-LIBFLAGS     = -shared
-DEBUGFLAGS   = -O0 -ggdb3 -D DEBUG
-RELEASEFLAGS = -O2
+# Compiler flags
+AR		= ar
+CC      = gcc
+CFLAGS  = -Wall -Wextra -std=c11 -fPIC
+IFLAGS  = -I ./
+LDFLAGS = -shared
 
-NAME    = strutil
-TARGET  = lib$(NAME).so
-HEADER  = $(NAME).h
-SOURCES = $(shell find ./ -name '*.c')
-OBJECTS = $(SOURCES:.c=.o)
 
-PREFIX = $(DESTDIR)/usr/local
+# Files
+NAME = strutil
+SRCS = strutil_contains.c \
+       strutil_ends_with.c \
+	   strutil_indexOf.c \
+	   strutil_indices_of.c \
+	   strutil_lowercase.c \
+	   strutil_remove_each.c \
+	   strutil_replace_all.c \
+	   strutil_split.c \
+	   strutil_substring.c \
+	   strutil_trim.c \
+	   strutil_uppercase.c
+OBJS = $(SRCS:.c=.o)
+HEADER = $(NAME).h
+TARGET = lib$(NAME).so
+ARCHIVE = lib$(NAME).a
+
+
+# Directories
+PREFIX = $(DESTDIR)/usr
 LIBDIR = $(PREFIX)/lib
-INCLUDEDIR = $(PREFIX)/include/$(NAME)
+INCDIR = $(PREFIX)/include/$(NAME)
 
 
-all: $(TARGET)
+# Debug build settings
+DBGDIR = debug
+DBGSLIB = $(DBGDIR)/$(TARGET)
+DBGALIB = $(DBGDIR)/$(ARCHIVE)
+DBGOBJS = $(addprefix $(DBGDIR)/, $(OBJS))
+DBGCFLAGS = -O0 -ggdb -D DEBUG
 
-$(TARGET): CFLAGS += $(RELEASEFLAGS)
-$(TARGET): $(SOURCES)
-	$(CC) $(CFLAGS) -I $(IFLAGS) $(LIBFLAGS) -o $(TARGET) $(SOURCES)
 
-debug: CFLAGS += $(DEBUGFLAGS)
-debug: $(OBJECTS)
-	$(CC) $(CFLAGS) -I $(IFLAGS) $(LIBFLAGS) -o $(TARGET)-debug $(OBJECTS)
+# Release build settings
+RELDIR = release
+RELSLIB = $(RELDIR)/$(TARGET)
+RELALIB = $(RELDIR)/$(ARCHIVE)
+RELOBJS = $(addprefix $(RELDIR)/, $(OBJS))
+RELCFLAGS = -O2
 
+
+.PHONY: all clean debug prep release
+
+
+# Default build
+all: debug release
+
+
+# Debug rules
 profile: CFLAGS += -pg
 profile: debug
+debug: prep_debug $(DBGSLIB) $(DBGALIB)
 
-install: all
-	install -D $(TARGET) $(LIBDIR)/$(TARGET)
-	install -D $(HEADER) $(INCLUDEDIR)/$(HEADER)
+$(DBGSLIB): $(DBGOBJS)
+	$(CC) -o $(DBGSLIB) $^ $(LDFLAGS)
+
+$(DBGALIB): $(DBGOBJS)
+	$(AR) -r $(DBGDIR)/$(ARCHIVE) $^
+
+$(DBGDIR)/%.o: %.c
+	$(CC) -c $(CFLAGS) $(IFLAGS) $(DBGCFLAGS) -o $@ $<
+
+
+# Release rules
+install: release
+	install -D $(RELDIR)/$(TARGET) $(LIBDIR)/$(TARGET)
+	install -D $(HEADER) $(INCDIR)/$(HEADER)
 	ldconfig
 
-install-strip: all
-	install -D -s $(TARGET) $(LIBDIR)/$(TARGET)
-	install -D $(HEADER) $(INCLUDEDIR)/$(HEADER)
+install-strip: release
+	install -D -s $(RELDIR)/$(TARGET) $(LIBDIR)/$(TARGET)
+	install -D $(HEADER) $(INCDIR)/$(HEADER)
 	ldconfig
 
-uninstall:
-	rm -f $(LIBDIR)/$(TARGET)
-	rm -f $(INCLUDEDIR)/$(HEADER)
-	rmdir $(INCLUDEDIR)
-	ldconfig
+release: prep_release $(RELSLIB) $(RELALIB)
+
+$(RELSLIB): $(RELOBJS)
+	$(CC) -o $(RELSLIB) $^ $(LDFLAGS)
+
+$(RELALIB): $(REAOBJS)
+	$(AR) -r $(RELDIR)/$(ARCHIVE) $^
+
+$(RELDIR)/%.o: %.c
+	$(CC) -c $(CFLAGS) $(IFLAGS) $(RELCFLAGS) -o $@ $<
+
+
+# Other rules
+prep_debug:
+	mkdir -p $(DBGDIR)/
+
+prep_release:
+	mkdir -p $(RELDIR)/
 
 clean:
-	-rm -f $(OBJECTS)
-	-rm -f $(TARGET)-debug
+	rm -rf $(DBGDIR)/
+	rm -rf $(RELDIR)/
 
-distclean: clean
-	-rm -f $(TARGET)
-
-
-.SECONDEXPANSION:
-
-$(foreach OBJ,$(OBJECTS),$(eval $(OBJ)_DEPS = $(shell $(CC) -MM $(OBJ:.o=.c) | sed s/.*://)))
-%.o: %.c $$($$@_DEPS)
-	$(CC) $(CFLAGS) -I $(IFLAGS) -c -o $@ $<
-
-
-.PHONY: all profile debug install install-strip uninstall clean distclean
+uninstall:
+	rm -rf $(LIBDIR)/$(TARGET)
+	rm -rf $(INCDIR)/$(HEADER)
+	rmdir $(INCDIR)
+	ldconfig
