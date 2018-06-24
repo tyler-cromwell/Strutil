@@ -12,6 +12,6 @@ extern void strutil_replace_all(char*, char, char);
 extern char **strutil_split(char*, char*, size_t*);
 extern char *strutil_substring(char*, size_t, size_t);
 extern char *strutil_trim(char*);
-extern char *strutil_uppercase(char*);
+extern void strutil_uppercase(char*);
 
 #endif
