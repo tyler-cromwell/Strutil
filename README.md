@@ -15,8 +15,25 @@ Strutil is a simple string library that I've been using to supplement the string
 - `trim`: Trims the leading and trailing spaces in a string.
 - `uppercase`: Sets all letters to uppercase.
 
-## Documentation
-Man pages are on the way! For now read the comments above each function.
+## Building
+To use Strutil...<br>
+1. Insert `#include <strutil/strutil.h>` into your source file(s).<br>
+2. Compile with the `-lstrutil` flag.<br>
+
+## Dependencies
+- glibc (2.16 or later) ([GNU C Library][Glibc])
+- gcc ([GNU Compiler Collection][GCC]) OR clang ([Clang][Clang]/[LLVM][LLVM])
+
+## How to Install
+```
+$ make
+$ sudo make install
+```
+
+## How to Uninstall
+```
+$ sudo make uninstall
+```
 
 ## Contributing
 Submit a pull request! Upon submission I will review any and all changes.
@@ -24,22 +41,6 @@ Submit a pull request! Upon submission I will review any and all changes.
 ## Bugs
 All bugs and other issues should be reported on the github issue tracker.
 
-## Building
-To use Strutil...<br>
-1. Insert `#include <strutil/strutil.h>` into your source file(s).<br>
-2. Compile with the `-lstrutil` flag.<br>
-3. Run `export LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH` in either `~/.bash_profile` or on the command-line.
-It's as easy as that!
-
-## Dependencies
-- glibc (2.16 or later) ([GNU C Library][Glibc])
-- gcc ([GNU Compiler Collection][GCC]) OR clang ([Clang][Clang]/[LLVM][LLVM])
-
-## How to Install
-TBD
-
-## How to Uninstall
-TBD
 
 [C Standard Library]: http://en.wikipedia.org/wiki/C_standard_library
 [Glibc]: http://en.wikipedia.org/wiki/GNU_C_Library
