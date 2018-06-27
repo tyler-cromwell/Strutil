@@ -9,6 +9,7 @@ Strutil is a simple string library that I've been using to supplement the string
 - `lowercase`: Sets all letters to lowercase.
 - `remove_each`: Removes all given characters from a string.
 - `replace_all`: Replaces each occurence of a character with a new character in a string.
+- `reverse`: Reverses the contents of a string.
 - `split`: Splits a string at each occurence of a token. Returns an array of Strings.
 - `starts_with`: Tests if a string starts with a given token.
 - `substring`: Gets a substring within a given range.
