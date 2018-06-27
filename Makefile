@@ -1,7 +1,7 @@
 # Compiler flags
 AR		= ar
 CC      = gcc
-CFLAGS  = -Wall -Wextra -std=c11 -fPIC
+CFLAGS  = -Wall -Wextra -std=c11 -fPIC -pipe
 IFLAGS  = -I ./
 LDFLAGS = -shared
 
