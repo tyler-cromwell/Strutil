@@ -86,7 +86,7 @@ release: prep_release $(RELSLIB) $(RELALIB)
 $(RELSLIB): $(RELOBJS)
 	$(CC) -o $(RELSLIB) $^ $(LDFLAGS)
 
-$(RELALIB): $(REAOBJS)
+$(RELALIB): $(RELOBJS)
 	$(AR) -r $(RELDIR)/$(ARCHIVE) $^
 
 $(RELDIR)/%.o: %.c
