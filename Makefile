@@ -1,8 +1,8 @@
 # Compiler flags
-AR		= ar
+AR      = ar
 CC      = gcc
 CFLAGS  = -Wall -Wextra -std=c11 -fPIC -pipe
-IFLAGS  = -I ./
+IFLAGS  =
 LDFLAGS = -shared
 
 
@@ -10,16 +10,16 @@ LDFLAGS = -shared
 NAME = strutil
 SRCS = strutil_contains.c \
        strutil_ends_with.c \
-	   strutil_indexOf.c \
-	   strutil_indices_of.c \
-	   strutil_lowercase.c \
-	   strutil_remove_each.c \
-	   strutil_replace_all.c \
-	   strutil_reverse.c \
-	   strutil_split.c \
-	   strutil_substring.c \
-	   strutil_trim.c \
-	   strutil_uppercase.c
+       strutil_indexOf.c \
+       strutil_indices_of.c \
+       strutil_lowercase.c \
+       strutil_remove_each.c \
+       strutil_replace_all.c \
+       strutil_reverse.c \
+       strutil_split.c \
+       strutil_substring.c \
+       strutil_trim.c \
+       strutil_uppercase.c
 OBJS = $(SRCS:.c=.o)
 HEADER = $(NAME).h
 TARGET = lib$(NAME).so
@@ -37,7 +37,7 @@ DBGDIR = debug
 DBGSLIB = $(DBGDIR)/$(TARGET)
 DBGALIB = $(DBGDIR)/$(ARCHIVE)
 DBGOBJS = $(addprefix $(DBGDIR)/, $(OBJS))
-DBGCFLAGS = -O0 -ggdb -D DEBUG
+DBGCFLAGS = -O0 -ggdb -pg -D DEBUG
 
 
 # Release build settings
@@ -50,14 +50,11 @@ RELCFLAGS = -O2
 
 .PHONY: all clean debug prep release
 
-
 # Default build
 all: debug release
 
 
 # Debug rules
-profile: CFLAGS += -pg
-profile: debug
 debug: prep_debug $(DBGSLIB) $(DBGALIB)
 
 $(DBGSLIB): $(DBGOBJS)
@@ -67,7 +64,7 @@ $(DBGALIB): $(DBGOBJS)
 	$(AR) -r $(DBGDIR)/$(ARCHIVE) $^
 
 $(DBGDIR)/%.o: %.c
-	$(CC) -c $(CFLAGS) $(IFLAGS) $(DBGCFLAGS) -o $@ $<
+	$(CC) -c $(CFLAGS) $(DBGCFLAGS) -o $@ $<
 
 
 # Release rules
@@ -90,7 +87,7 @@ $(RELALIB): $(RELOBJS)
 	$(AR) -r $(RELDIR)/$(ARCHIVE) $^
 
 $(RELDIR)/%.o: %.c
-	$(CC) -c $(CFLAGS) $(IFLAGS) $(RELCFLAGS) -o $@ $<
+	$(CC) -c $(CFLAGS) $(RELCFLAGS) -o $@ $<
 
 
 # Other rules
