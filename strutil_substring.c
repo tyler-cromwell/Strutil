@@ -11,11 +11,10 @@
  *   char *original: the string to derive the substring from.
  *   size_t start: the starting index.
  *   size_t end: the ending index.
- * Memory Management:
- *   Free the returned pointer when done.
  * Returns: the substring.
+ * (Pointer must be freed)
  */
-char *strutil_substring(char *original, size_t start, size_t end) {
+char * strutil_substring(char *original, size_t start, size_t end) {
     char *substring = calloc((end-start)+1, sizeof(char));
     strncpy(substring, original+start, end-start);
     return substring;

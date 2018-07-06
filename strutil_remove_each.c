@@ -11,12 +11,11 @@
  *   char* chars: the characters to be removed from 'string'.
  * Pre-Condition(s):
  *   strlen(chars) < strlen(string)
- * Memory Management:
- *   Free the returned string when done.
  * Returns: the shortened string.
+ * (Pointer must be freed)
  */
-char* strutil_remove_each(char* string, char* chars) {
-    char* shortened = calloc(strlen(string) - strlen(chars) + 1, sizeof(char));
+char * strutil_remove_each(char *string, char *chars) {
+    char *shortened = calloc(strlen(string) - strlen(chars) + 1, sizeof(char));
     size_t index = 0;
     char exclude = 0;
 
