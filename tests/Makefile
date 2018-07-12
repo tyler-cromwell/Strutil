@@ -1,27 +1,55 @@
-# Compiler flags
+# Variables
 CC      = gcc
 CFLAGS  = -Wall -Wextra -std=c11 -pipe -O0 -ggdb -pg -D DEBUG
 IFLAGS  = -I ../
-
-
-# Files
 LIB = ../debug/libstrutil.a
-SRCS = test_contains.c \
-       test_ends_with.c \
-       test_index_of.c \
-       test_indices_of.c
-       #$(wildcard ./*.c)
-OBJS = $(patsubst %.c, %.o, $(SRCS))
-EXES = $(patsubst %.c, %, $(SRCS))
 
 
 .PHONY: all clean
 
 # Default build
+EXES = test_contains \
+       test_ends_with \
+       test_index_of \
+       test_indices_of \
+       test_lowercase \
+       test_remove_each \
+	   test_replace_all
+
 all: $(EXES)
 
-$(EXES): $(OBJS)
+test_contains: test_contains.o
 	$(CC) -o $@ $< $(LIB)
+
+test_ends_with: test_ends_with.o
+	$(CC) -o $@ $< $(LIB)
+
+test_index_of: test_index_of.o
+	$(CC) -o $@ $< $(LIB)
+
+test_indices_of: test_indices_of.o
+	$(CC) -o $@ $< $(LIB)
+
+test_lowercase: test_lowercase.o
+	$(CC) -o $@ $< $(LIB)
+
+test_remove_each: test_remove_each.o
+	$(CC) -o $@ $< $(LIB)
+
+test_replace_all: test_replace_all.o
+	$(CC) -o $@ $< $(LIB)
+
+#test_split: test_split.o
+#	$(CC) -o $@ $< $(LIB)
+
+#test_substring: test_substring.o
+#	$(CC) -o $@ $< $(LIB)
+
+#test_trim: test_trim.o
+#	$(CC) -o $@ $< $(LIB)
+
+#test_uppercase: test_uppercase.o
+#	$(CC) -o $@ $< $(LIB)
 
 %.o: %.c
 	$(CC) -c $(CFLAGS) $(IFLAGS) -o $@ $<
@@ -29,5 +57,5 @@ $(EXES): $(OBJS)
 # Other rules
 clean:
 	rm -rf $(EXES)
-	rm -rf $(OBJS)
+	rm -rf *.o
 	rm -rf gmon.out
