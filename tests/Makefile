@@ -14,7 +14,8 @@ EXES = test_contains \
        test_indices_of \
        test_lowercase \
        test_remove_each \
-	   test_replace_all
+	   test_replace_all \
+	   test_split
 
 all: $(EXES)
 
@@ -39,8 +40,8 @@ test_remove_each: test_remove_each.o
 test_replace_all: test_replace_all.o
 	$(CC) -o $@ $< $(LIB)
 
-#test_split: test_split.o
-#	$(CC) -o $@ $< $(LIB)
+test_split: test_split.o
+	$(CC) -o $@ $< $(LIB)
 
 #test_substring: test_substring.o
 #	$(CC) -o $@ $< $(LIB)
