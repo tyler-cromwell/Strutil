@@ -12,14 +12,15 @@ EXES = test_contains \
        test_ends_with \
        test_index_of \
        test_indices_of \
+       test_insert \
        test_lowercase \
        test_remove_each \
-	   test_replace_all \
-	   test_reverse \
-	   test_split \
-	   test_substring \
-	   test_trim \
-	   test_uppercase
+       test_replace_all \
+       test_reverse \
+       test_split \
+       test_substring \
+       test_trim \
+       test_uppercase
 
 all: $(EXES)
 
@@ -35,8 +36,8 @@ test_index_of: test_index_of.o
 test_indices_of: test_indices_of.o
 	$(CC) -o $@ $< $(LIB)
 
-#test_insert: test_insert.o
-#	$(CC) -o $@ $< $(LIB)
+test_insert: test_insert.o
+	$(CC) -o $@ $< $(LIB)
 
 test_lowercase: test_lowercase.o
 	$(CC) -o $@ $< $(LIB)

@@ -6,7 +6,7 @@ extern int strutil_ends_with(char*, char*);
 extern int strutil_starts_with(char*, char*);
 extern size_t strutil_index_of(char*, char);
 extern size_t * strutil_indices_of(char*, char, size_t*);
-extern void strutil_insert(char*, char*, size_t);
+extern char * strutil_insert(char*, char*, size_t);
 extern char * strutil_lowercase(char*);
 extern char * strutil_remove_each(char*, char*);
 extern char * strutil_replace_all(char*, char, char);

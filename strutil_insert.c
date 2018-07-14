@@ -28,7 +28,7 @@ char * strutil_insert(char *original, char *additional, size_t index) {
     } else {
         strncpy(expanded, original, index);
         strncat(expanded, additional, la);
-        strncat(expanded, original + index, la - index);
+        strncat(expanded, original + index, lo - index);
     }
 
     return expanded;
