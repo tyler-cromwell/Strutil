@@ -17,7 +17,8 @@ EXES = test_contains \
 	   test_replace_all \
 	   test_split \
 	   test_substring \
-	   test_trim
+	   test_trim \
+	   test_uppercase
 
 all: $(EXES)
 
@@ -57,8 +58,8 @@ test_substring: test_substring.o
 test_trim: test_trim.o
 	$(CC) -o $@ $< $(LIB)
 
-#test_uppercase: test_uppercase.o
-#	$(CC) -o $@ $< $(LIB)
+test_uppercase: test_uppercase.o
+	$(CC) -o $@ $< $(LIB)
 
 %.o: %.c
 	$(CC) -c $(CFLAGS) $(IFLAGS) -o $@ $<

@@ -18,6 +18,8 @@ char * strutil_uppercase(char *string) {
     for (size_t i = 0; i < length; i++) {
         if (string[i] >= 'a' && string[i] <= 'z') {
             upper[i] = string[i] - 32;
+        } else {
+            upper[i] = string[i];
         }
     }
 

@@ -18,6 +18,8 @@ char * strutil_lowercase(char *string) {
     for (size_t i = 0; i < length; i++) {
         if (string[i] >= 'A' && string[i] <= 'Z') {
             lower[i] = string[i] + 32;
+        } else {
+            lower[i] = string[i];
         }
     }
 
