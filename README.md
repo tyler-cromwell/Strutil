@@ -6,7 +6,9 @@ Strutil is a simple string library that I've been using to supplement the string
 - `ends_with`: Tests if a string ends with a given token.
 - `index_of`: Gets the FIRST index of a character within a string.
 - `indices_of`: Gets ALL indexes of a character withing a string
+- `insert`: Inserts a string at the specified index.
 - `lowercase`: Sets all letters to lowercase.
+- `remove`: Removes characters from a string in the given range.
 - `remove_each`: Removes all given characters from a string.
 - `replace_all`: Replaces each occurence of a character with a new character in a string.
 - `reverse`: Reverses the contents of a string.
