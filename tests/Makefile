@@ -16,7 +16,8 @@ EXES = test_contains \
        test_remove_each \
 	   test_replace_all \
 	   test_split \
-	   test_substring
+	   test_substring \
+	   test_trim
 
 all: $(EXES)
 
@@ -32,8 +33,14 @@ test_index_of: test_index_of.o
 test_indices_of: test_indices_of.o
 	$(CC) -o $@ $< $(LIB)
 
+#test_insert: test_insert.o
+#	$(CC) -o $@ $< $(LIB)
+
 test_lowercase: test_lowercase.o
 	$(CC) -o $@ $< $(LIB)
+
+#test_remove: test_remove.o
+#	$(CC) -o $@ $< $(LIB)
 
 test_remove_each: test_remove_each.o
 	$(CC) -o $@ $< $(LIB)
@@ -47,8 +54,8 @@ test_split: test_split.o
 test_substring: test_substring.o
 	$(CC) -o $@ $< $(LIB)
 
-#test_trim: test_trim.o
-#	$(CC) -o $@ $< $(LIB)
+test_trim: test_trim.o
+	$(CC) -o $@ $< $(LIB)
 
 #test_uppercase: test_uppercase.o
 #	$(CC) -o $@ $< $(LIB)
