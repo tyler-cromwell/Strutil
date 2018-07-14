@@ -14,6 +14,7 @@ SRCS = strutil_contains.c \
        strutil_indices_of.c \
        strutil_insert.c \
        strutil_lowercase.c \
+	   strutil_remove.c \
        strutil_remove_each.c \
        strutil_replace_all.c \
        strutil_reverse.c \

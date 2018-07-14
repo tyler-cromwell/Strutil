@@ -8,6 +8,7 @@ extern size_t strutil_index_of(char*, char);
 extern size_t * strutil_indices_of(char*, char, size_t*);
 extern char * strutil_insert(char*, char*, size_t);
 extern char * strutil_lowercase(char*);
+extern char * strutil_remove(char*, size_t, size_t);
 extern char * strutil_remove_each(char*, char*);
 extern char * strutil_replace_all(char*, char, char);
 extern char * strutil_reverse(char*);
