@@ -15,6 +15,7 @@ EXES = test_contains \
        test_lowercase \
        test_remove_each \
 	   test_replace_all \
+	   test_reverse \
 	   test_split \
 	   test_substring \
 	   test_trim \
@@ -47,6 +48,9 @@ test_remove_each: test_remove_each.o
 	$(CC) -o $@ $< $(LIB)
 
 test_replace_all: test_replace_all.o
+	$(CC) -o $@ $< $(LIB)
+
+test_reverse: test_reverse.o
 	$(CC) -o $@ $< $(LIB)
 
 test_split: test_split.o

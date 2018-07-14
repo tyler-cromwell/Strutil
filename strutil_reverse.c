@@ -9,13 +9,17 @@
  * Argument(s):
  *   char *string: the string being reversed.
  */
-void strutil_reverse(char *string) {
+char * strutil_reverse(char *string) {
     char temp = 0;
     size_t length = strlen(string);
+    char *reversed = calloc(length + 1, sizeof(char));
+    strncpy(reversed, string, length);
 
     for (size_t i = 0; i < (length / 2); i++) {
-        temp = string[i];
-        string[i] = string[length-1-i];
-        string[length-1-i] = temp;
+        temp = reversed[i];
+        reversed[i] = reversed[length-1-i];
+        reversed[length-1-i] = temp;
     }
+
+    return reversed;
 }
