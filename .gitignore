@@ -9,6 +9,7 @@ test_ends_with
 test_index_of
 test_indices_of
 test_insert
+test_lcs
 test_lowercase
 test_remove
 test_remove_each

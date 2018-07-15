@@ -13,6 +13,7 @@ EXES = test_contains \
        test_index_of \
        test_indices_of \
        test_insert \
+       test_lcs \
        test_lowercase \
 	   test_remove \
        test_remove_each \
@@ -38,6 +39,9 @@ test_indices_of: test_indices_of.o
 	$(CC) -o $@ $< $(LIB)
 
 test_insert: test_insert.o
+	$(CC) -o $@ $< $(LIB)
+
+test_lcs: test_lcs.o
 	$(CC) -o $@ $< $(LIB)
 
 test_lowercase: test_lowercase.o
