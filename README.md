@@ -7,6 +7,7 @@ Strutil is a simple string library that I've been using to supplement the string
 - `index_of`: Gets the FIRST index of a character within a string.
 - `indices_of`: Gets ALL indexes of a character withing a string
 - `insert`: Inserts a string at the specified index.
+- `lcs`: Computes the [Longest Common Subsequence][] of a pair of strings.
 - `lowercase`: Sets all letters to lowercase.
 - `remove`: Removes characters from a string in the given range.
 - `remove_each`: Removes all given characters from a string.
@@ -50,5 +51,6 @@ All bugs and other issues should be reported on the github issue tracker.
 [GCC]: http://en.wikipedia.org/wiki/GNU_Compiler_Collection
 [Clang]: http://en.wikipedia.org/wiki/Clang
 [LLVM]: http://en.wikipedia.org/wiki/LLVM
-
 [Gmake]: http://www.gnu.org/software/make/
+
+[lcs]: https://en.wikipedia.org/wiki/Longest_common_subsequence_problem
