@@ -19,7 +19,7 @@ Strutil is a simple string library that I've been using to supplement the string
 - `trim`: Trims the leading and trailing spaces in a string.
 - `uppercase`: Sets all letters to uppercase.
 
-## Building
+## Usage
 To use Strutil...<br>
 1. Insert `#include <strutil/strutil.h>` into your source file(s).<br>
 2. Compile with the `-lstrutil` flag.<br>
@@ -38,6 +38,11 @@ $ sudo make install
 ```
 $ sudo make uninstall
 ```
+
+## Tests
+1. Build debug library (`make debug`) from the project root directory.
+2. Clean all executables in the test directory because the static library is used (`make clean`).
+3. Build all or which ever test you want (`make` or `make <something>`).
 
 ## Contributing
 Submit a pull request! Upon submission I will review any and all changes.

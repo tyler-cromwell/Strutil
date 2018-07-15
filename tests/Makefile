@@ -15,7 +15,7 @@ EXES = test_contains \
        test_insert \
        test_lcs \
        test_lowercase \
-	   test_remove \
+       test_remove \
        test_remove_each \
        test_replace_all \
        test_reverse \
