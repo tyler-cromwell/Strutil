@@ -13,7 +13,7 @@ typedef enum {
 
 /*
  * Translated from pseudocode in the book:
- * "Introduction to Algorithms, 3rd Edition", page 395.
+ * "Introduction to Algorithms, 3rd Edition", pages 394-395.
  *
  * Returns: the LCS.
  * (Pointer must be freed)
