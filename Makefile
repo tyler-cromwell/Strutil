@@ -1,13 +1,21 @@
+# Names
+NAME = strutil
+HEADER = $(NAME).h
+ARCHIVE = lib$(NAME).a
+LNNAME = lib$(NAME).so
+SONAME = $(LNNAME).2
+TARGET = $(SONAME).0
+
+
 # Compiler flags
 AR      = ar
 CC      = gcc
 CFLAGS  = -Wall -Wextra -std=c11 -fPIC -pipe
 IFLAGS  =
-LDFLAGS = -shared
+LDFLAGS = -shared -Wl,-Bsymbolic,-soname,$(SONAME)
 
 
 # Files
-NAME = strutil
 SRCS = strutil_contains.c \
        strutil_ends_with.c \
        strutil_index_of.c \
@@ -24,14 +32,11 @@ SRCS = strutil_contains.c \
        strutil_trim.c \
        strutil_uppercase.c
 OBJS = $(SRCS:.c=.o)
-HEADER = $(NAME).h
-TARGET = lib$(NAME).so
-ARCHIVE = lib$(NAME).a
 
 
 # Directories
 PREFIX = $(DESTDIR)/usr
-LIBDIR = $(PREFIX)/lib
+LIBDIR = $(PREFIX)/lib64
 INCDIR = $(PREFIX)/include/$(NAME)
 
 
@@ -72,13 +77,15 @@ $(DBGDIR)/%.o: %.c
 
 # Release rules
 install: release
-	install -D $(RELDIR)/$(TARGET) $(LIBDIR)/$(TARGET)
 	install -D $(HEADER) $(INCDIR)/$(HEADER)
+	install -D $(RELDIR)/$(TARGET) $(LIBDIR)/$(TARGET)
+	ln -fs $(SONAME) $(LIBDIR)/$(LNNAME)
 	ldconfig
 
 install-strip: release
-	install -D -s $(RELDIR)/$(TARGET) $(LIBDIR)/$(TARGET)
 	install -D $(HEADER) $(INCDIR)/$(HEADER)
+	install -D -s $(RELDIR)/$(TARGET) $(LIBDIR)/$(TARGET)
+	ln -fs $(SONAME) $(LIBDIR)/$(LNNAME)
 	ldconfig
 
 release: prep_release $(RELSLIB) $(RELALIB)
@@ -105,6 +112,8 @@ clean:
 	rm -rf $(RELDIR)/
 
 uninstall:
+	rm -rf $(LIBDIR)/$(LNNAME)
+	rm -rf $(LIBDIR)/$(SONAME)
 	rm -rf $(LIBDIR)/$(TARGET)
 	rm -rf $(INCDIR)/$(HEADER)
 	rmdir $(INCDIR)
